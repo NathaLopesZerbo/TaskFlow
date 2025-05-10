@@ -45,6 +45,9 @@
 
 						<form method="post" action="tarefa_controller.php?acao=inserir">
 							<div class="mb-4">
+								<h1>Título</h1>
+								<input type="text" name="name" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Exemplo: Lavar o carro" >
+								<h1>Descrição</h1>
 								<input type="text" name="tarefa" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Exemplo: Lavar o carro" >
 							</div>
 

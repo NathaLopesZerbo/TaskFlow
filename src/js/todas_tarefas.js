@@ -32,8 +32,9 @@ function edit(id, txt_tarefa){
 
     tarefa.insertBefore(form, tarefa[0])
 
-    function remover(id){
+}
+
+
+    function remove(id){
         location.href = 'todas_tarefas.php?acao=remover&id='+id;
     }
-
-}

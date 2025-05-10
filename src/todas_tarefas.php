@@ -50,7 +50,7 @@ require 'tarefa_controller.php';
 								</div>
 								<div class="w-3/12 mt-2 flex justify-between">
 									<i class="fas fa-trash-alt fa-lg text-red-500 cursor-pointer" 
-									onclick="remove(<?=$tarefas->id?>)"></i>
+									onclick="remove(<?=$tarefa->id?>)"></i>
 									<i class="fas fa-edit fa-lg text-blue-500 cursor-pointer" onclick="edit(<?= $tarefa->id ?>,'<?= $tarefa->tarefa ?>')"></i>
 									<i class="fas fa-check-square fa-lg text-green-500 cursor-pointer"></i>
 								</div>

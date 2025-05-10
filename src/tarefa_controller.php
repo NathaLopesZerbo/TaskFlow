@@ -6,6 +6,7 @@
 
     $acao = isset($_GET['acao']) ? $_GET['acao'] : $acao;
 
+
     if($acao == 'inserir'){
         $tarefa = new Tarefa();
         $tarefa->__set('tarefa', $_POST['tarefa']); 
@@ -36,5 +37,14 @@
             header('location: todas_tarefas.php');
         }
 
+    } else if ($acao == 'remover'){
+        $tarefa = new Tarefa();
+        $tarefa->__set('id', $_GET['id']);
+
+        $conexao = new Conexao();
+        $tarefaService = new TarefaService($conexao, $tarefa);
+        $tarefaService->remove();
+
+        header('location: todas_tarefas.php');
     }
 ?>
