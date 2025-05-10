@@ -29,7 +29,7 @@ require 'tarefa_controller.php';
 				<div class="absolute flex flex-col">
 					<button id="dropdownButton" class="border-x text-sm border-gray-300 text-gray-600 h-10 px-4 bg-white hover:border-gray-400 focus:outline-none flex items-center justify-between rounded-tl-xl rounded-bl-xl w-40 overflow-hidden truncate whitespace-nowrap">
 						<span id="selectedOption" class="cursor-pointer">
-							Tarefas
+							Tarefa
 						</span>
 						<i class="fa-solid fa-caret-down"></i>
 					</button>
@@ -44,49 +44,42 @@ require 'tarefa_controller.php';
 				</button>
 			</div>
 
-
-
-
 			<a href="#" class="text-white text-2xl">
 				<i class="fa-solid fa-user"></i>
 			</a>
 		</div>
 	</nav>
 
-	<div class="container mx-auto mt-6">
-		<div class="flex">
-			<div class="w-1/4 bg-gray-200 p-4 rounded-md">
-				<ul class="space-y-2">
-					<li class="bg-green-500 text-white p-2 rounded-md"><a href="#">Tarefas pendentes</a></li>
-					<li class="bg-gray-300 p-2 rounded-md"><a href="nova_tarefa.php">Nova tarefa</a></li>
-					<li class="bg-gray-300 p-2 rounded-md"><a href="todas_tarefas.php">Todas tarefas</a></li>
-				</ul>
-			</div>
-
+	<div class="container mx-auto mt-6"> 
 			<div class="w-3/4 pl-6">
-				<div class="container">
-					<div class="space-y-6">
-						<h4 class="text-xl font-semibold">Tarefas pendentes</h4>
-						<hr />
+    <div class="space-y-6">
+        <h4 class="text-xl font-semibold">Tarefas Pendentes</h4>
+        <hr class="border-gray-300" />
 
-						<?php foreach ($tarefas as $indice => $tarefa) { ?>
-							<div class="flex items-center mb-3 tarefa">
-								<div class="w-9/12" id="tarefa_<?= $tarefa->id ?>">
-									<?= $tarefa->tarefa ?>
-								</div>
-								<div class="w-3/12 mt-2 flex justify-between">
-									<i class="fas fa-trash-alt fa-lg text-red-500 cursor-pointer"
-										onclick="remove(<?= $tarefa->id ?>)"></i>
-									<i class="fas fa-edit fa-lg text-blue-500 cursor-pointer" onclick="edit(<?= $tarefa->id ?>,'<?= $tarefa->tarefa ?>')"></i>
-									<i class="fas fa-check-square fa-lg text-green-500 cursor-pointer" onclick="marked(<?= $tarefa->id ?>)"></i>
+        <?php foreach ($tarefas as $indice => $tarefa) { ?>
+            <div class="flex items-center justify-between bg-white p-4 rounded shadow-sm tarefa mb-3">
+                <div class="w-9/12 text-gray-800" id="tarefa_<?= $tarefa->id ?>">
+                    <?= $tarefa->tarefa ?>
+                </div>
+                <div class="w-3/12 flex items-center justify-end gap-4 mt-1">
+                    <i class="fas fa-trash-alt fa-lg text-red-500 hover:text-red-600 cursor-pointer"
+                        onclick="remove(<?= $tarefa->id ?>)"></i>
+                    <i class="fas fa-edit fa-lg text-blue-500 hover:text-blue-600 cursor-pointer"
+                        onclick="edit(<?= $tarefa->id ?>,'<?= $tarefa->tarefa ?>')"></i>
+                    <i class="fas fa-check-square fa-lg text-green-500 hover:text-green-600 cursor-pointer"
+                        onclick="marked(<?= $tarefa->id ?>)"></i>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+</div>
 
-								<?php } ?>
+	</div>
 
-								</div>
-							</div>
-					</div>
-				</div>
-			</div>
+	
+
+
+				
 
 			<script src="../src/js/index.js"></script>
 </body>

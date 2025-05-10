@@ -71,14 +71,7 @@
 
 	<div class="container mx-auto mt-6">
 		<div class="flex">
-			<div class="w-1/4 bg-gray-200 p-4 rounded-md">
-				<ul class="space-y-2">
-					<li class="bg-gray-300 p-2 rounded-md"><a href="index.php">Tarefas pendentes</a></li>
-					<li class="bg-green-500 text-white p-2 rounded-md"><a href="#">Nova tarefa</a></li>
-					<li class="bg-gray-300 p-2 rounded-md"><a href="todas_tarefas.php">Todas tarefas</a></li>
-				</ul>
-			</div>
-
+		
 			<div class="w-3/4 pl-6">
 				<div class="container">
 					<div class="space-y-6">

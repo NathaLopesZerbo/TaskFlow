@@ -1,33 +1,42 @@
-
 const button = document.getElementById('dropdownButton');
 const menu = document.getElementById('dropdownMenu');
 const selected = document.getElementById('selectedOption');
 
-const options = ["Nova Tarefa", "Pendentes", "Todas Tarefas"];
 
-function renderMenu(excludeValue) {
+const options = [
+    { label: "Nova Tarefa", url: "../src/nova_tarefa.php" },
+    { label: "Pendentes", url: "../src/index.php" },
+    { label: "Todas Tarefas", url: "../src/todas_tarefas.php" }
+];
+
+
+let currentLabel = localStorage.getItem('selectedLabel') || "Todas Tarefas";
+selected.textContent = currentLabel;
+
+function renderMenu(excludeLabel) {
     menu.innerHTML = '';
     options.forEach(option => {
-        if (option !== excludeValue) {
-            const div = document.createElement('div');
-            div.className = "px-4 py-2 hover:bg-gray-100 cursor-pointer";
-            div.dataset.value = option;
-            div.textContent = option;
-            menu.appendChild(div);
-        }
-    });
+        if (option.label !== excludeLabel) {
+            const a = document.createElement('a');
+            a.className = "block px-4 py-2 hover:bg-gray-100 cursor-pointer";
+            a.href = option.url;
+            a.textContent = option.label;
 
-    document.querySelectorAll('#dropdownMenu div').forEach(item => {
-        item.addEventListener('click', () => {
-            const newValue = item.dataset.value;
-            selected.textContent = newValue;
-            renderMenu(newValue);
-            menu.classList.add('hidden');
-        });
+            a.addEventListener('click', (e) => {
+                e.preventDefault();
+                localStorage.setItem('selectedLabel', option.label);
+                selected.textContent = option.label;
+                renderMenu(option.label);
+                menu.classList.add('hidden');
+                window.location.href = option.url;
+            });
+
+            menu.appendChild(a);
+        }
     });
 }
 
-renderMenu("Tarefas");
+renderMenu(currentLabel);
 
 button.addEventListener('click', () => {
     menu.classList.toggle('hidden');
