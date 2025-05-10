@@ -6,7 +6,6 @@
 
     $acao = isset($_GET['acao']) ? $_GET['acao'] : $acao;
 
-    echo $acao;
 
     if($acao == 'inserir'){
         $tarefa = new Tarefa();
@@ -35,7 +34,12 @@
 
         $tarefaService = new TarefaService($conexao, $tarefa);
         if($tarefaService->update()){
-            header('location: todas_tarefas.php');
+            if (isset($_GET['pag']) && $_GET['pag'] == 'index'){
+                header('location: index.php');
+            }else {
+                header('location: todas_tarefas.php');
+            }
+            
         }
 
     } else if ($acao == 'remove'){
@@ -46,7 +50,11 @@
         $tarefaService = new TarefaService($conexao, $tarefa);
         $tarefaService->remove();
 
-        header('location: todas_tarefas.php');
+          if (isset($_GET['pag']) && $_GET['pag'] == 'index'){
+                header('location: index.php');
+            }else {
+                header('location: todas_tarefas.php');
+            }
 
     } else if($acao == 'marked'){
         $tarefa = new Tarefa();
@@ -57,6 +65,19 @@
         $tarefaService = new TarefaService($conexao, $tarefa);
         $tarefaService->marked();
 
-        header('location: todas_tarefas.php');
+          if (isset($_GET['pag']) && $_GET['pag'] == 'index'){
+                header('location: index.php');
+            }else {
+                header('location: todas_tarefas.php');
+            }
+
+    } else if($acao == 'pendingTasks'){
+        $tarefa = new Tarefa();
+        $tarefa->__set('id_status', 1);
+        $conexao = new Conexao();
+
+        $tarefaService = new TarefaService($conexao, $tarefa);
+        $tarefas = $tarefaService->pendingTasks();
+
     }
 ?>

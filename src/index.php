@@ -1,3 +1,8 @@
+<?php
+$acao = 'pendingTasks';
+require 'tarefa_controller.php';
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -35,29 +40,69 @@
 						<h4 class="text-xl font-semibold">Tarefas pendentes</h4>
 						<hr />
 
-						<div class="flex mb-3 items-center p-3 bg-white rounded-md shadow-sm">
-							<div class="flex-1">Lavar o carro</div>
-							<div class="flex space-x-4">
-								<i class="fas fa-trash-alt text-red-500 cursor-pointer"></i>
-								<i class="fas fa-edit text-blue-500 cursor-pointer"></i>
-								<i class="fas fa-check-square text-green-500 cursor-pointer"></i>
-							</div>
-						</div>
+						<?php foreach ($tarefas as $indice => $tarefa) { ?>
+							<div class="flex items-center mb-3 tarefa">
+								<div class="w-9/12" id="tarefa_<?= $tarefa->id ?>">
+									<?= $tarefa->tarefa ?>
+								</div>
+								<div class="w-3/12 mt-2 flex justify-between">
+									<i class="fas fa-trash-alt fa-lg text-red-500 cursor-pointer"
+									onclick="remove(<?= $tarefa->id ?>)"></i>
+									<i class="fas fa-edit fa-lg text-blue-500 cursor-pointer" onclick="edit(<?= $tarefa->id ?>,'<?= $tarefa->tarefa ?>')"></i>
+									<i class="fas fa-check-square fa-lg text-green-500 cursor-pointer" onclick="marked(<?= $tarefa->id ?>)"></i>
 
-						<div class="flex mb-3 items-center p-3 bg-white rounded-md shadow-sm">
-							<div class="flex-1">Passear com o cachorro</div>
-							<div class="flex space-x-4">
-								<i class="fas fa-trash-alt text-red-500 cursor-pointer"></i>
-								<i class="fas fa-edit text-blue-500 cursor-pointer"></i>
-								<i class="fas fa-check-square text-green-500 cursor-pointer"></i>
+								<?php } ?>
+
+								</div>
 							</div>
-						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+<script> 
+	function edit(id, txt_tarefa) {
+    let form = document.createElement('form')
+    form.action = 'index.php?pag=index&acao=atualizar'
+    form.method = 'post'
+    form.className = 'flex p-5'
 
+    let inputTarefa = document.createElement('input')
+    inputTarefa.type = 'text'
+    inputTarefa.name = 'tarefa'
+    inputTarefa.className = 'w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500'
+    inputTarefa.value = txt_tarefa
+
+    let inputId = document.createElement('input')
+    inputId.type = 'hidden'
+    inputId.name = 'id'
+    inputId.value = id
+
+    let button = document.createElement('button')
+    button.type = 'submit'
+    button.className = 'bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded'
+    button.innerHTML = 'Atualizar'
+
+    form.appendChild(inputTarefa)
+
+    form.appendChild(inputId)
+
+    form.appendChild(button)
+
+    let tarefa = document.getElementById('tarefa_' + id)
+
+    tarefa.innerHTML = "";
+
+    tarefa.insertBefore(form, tarefa[0])
+
+}
+
+function remove(id) {
+    location.href = 'index.php?pag=index&acao=remove&id=' + id;
+}
+
+function marked(id){
+    location.href = 'index.php?pag=index&acao=marked&id=' + id;
+}
+</script>
 </body>
 
 </html>

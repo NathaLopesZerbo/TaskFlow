@@ -34,7 +34,6 @@ function edit(id, txt_tarefa) {
 
 }
 
-
 function remove(id) {
     location.href = 'todas_tarefas.php?acao=remove&id=' + id;
 }
