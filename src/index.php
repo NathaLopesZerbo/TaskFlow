@@ -15,11 +15,22 @@ require 'tarefa_controller.php';
 </head>
 
 <body>
-	<nav class="bg-gray-100 p-4">
-		<div class="container mx-auto flex items-center">
-			<a class="flex items-center text-lg font-semibold" href="#">
-				<img src="img/logo.png" width="30" height="30" class="mr-2" alt="Logo">
-				App Lista Tarefas
+	<nav class="bg-principal p-4">
+		<div class="container mx-auto flex items-center justify-between">
+			<a href="index.php" class="flex items-center text-lg font-semibold">
+				<img src="img/logo_task_flow.png" width="30" height="30" alt="Logo">
+				<h1 class="text-white text-2xl pb-1">TaskFlow</h1>
+			</a>
+
+			<div class="relative text-gray-600">
+				<input type="search" name="serch" placeholder="Search" class="bg-white h-10 px-5 pr-10 rounded-xl text-sm focus:outline-none">
+				<button type="submit" class="absolute right-0 bottom-2 mt-3 mr-4 cursor-pointer">
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</button>
+			</div>
+
+			<a href="#" class="text-white text-2xl">
+				<i class="fa-solid fa-user"></i>
 			</a>
 		</div>
 	</nav>
@@ -47,7 +58,7 @@ require 'tarefa_controller.php';
 								</div>
 								<div class="w-3/12 mt-2 flex justify-between">
 									<i class="fas fa-trash-alt fa-lg text-red-500 cursor-pointer"
-									onclick="remove(<?= $tarefa->id ?>)"></i>
+										onclick="remove(<?= $tarefa->id ?>)"></i>
 									<i class="fas fa-edit fa-lg text-blue-500 cursor-pointer" onclick="edit(<?= $tarefa->id ?>,'<?= $tarefa->tarefa ?>')"></i>
 									<i class="fas fa-check-square fa-lg text-green-500 cursor-pointer" onclick="marked(<?= $tarefa->id ?>)"></i>
 
@@ -58,51 +69,51 @@ require 'tarefa_controller.php';
 					</div>
 				</div>
 			</div>
-<script> 
-	function edit(id, txt_tarefa) {
-    let form = document.createElement('form')
-    form.action = 'index.php?pag=index&acao=atualizar'
-    form.method = 'post'
-    form.className = 'flex p-5'
+			<script>
+				function edit(id, txt_tarefa) {
+					let form = document.createElement('form')
+					form.action = 'index.php?pag=index&acao=atualizar'
+					form.method = 'post'
+					form.className = 'flex p-5'
 
-    let inputTarefa = document.createElement('input')
-    inputTarefa.type = 'text'
-    inputTarefa.name = 'tarefa'
-    inputTarefa.className = 'w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500'
-    inputTarefa.value = txt_tarefa
+					let inputTarefa = document.createElement('input')
+					inputTarefa.type = 'text'
+					inputTarefa.name = 'tarefa'
+					inputTarefa.className = 'w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500'
+					inputTarefa.value = txt_tarefa
 
-    let inputId = document.createElement('input')
-    inputId.type = 'hidden'
-    inputId.name = 'id'
-    inputId.value = id
+					let inputId = document.createElement('input')
+					inputId.type = 'hidden'
+					inputId.name = 'id'
+					inputId.value = id
 
-    let button = document.createElement('button')
-    button.type = 'submit'
-    button.className = 'bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded'
-    button.innerHTML = 'Atualizar'
+					let button = document.createElement('button')
+					button.type = 'submit'
+					button.className = 'bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded'
+					button.innerHTML = 'Atualizar'
 
-    form.appendChild(inputTarefa)
+					form.appendChild(inputTarefa)
 
-    form.appendChild(inputId)
+					form.appendChild(inputId)
 
-    form.appendChild(button)
+					form.appendChild(button)
 
-    let tarefa = document.getElementById('tarefa_' + id)
+					let tarefa = document.getElementById('tarefa_' + id)
 
-    tarefa.innerHTML = "";
+					tarefa.innerHTML = "";
 
-    tarefa.insertBefore(form, tarefa[0])
+					tarefa.insertBefore(form, tarefa[0])
 
-}
+				}
 
-function remove(id) {
-    location.href = 'index.php?pag=index&acao=remove&id=' + id;
-}
+				function remove(id) {
+					location.href = 'index.php?pag=index&acao=remove&id=' + id;
+				}
 
-function marked(id){
-    location.href = 'index.php?pag=index&acao=marked&id=' + id;
-}
-</script>
+				function marked(id) {
+					location.href = 'index.php?pag=index&acao=marked&id=' + id;
+				}
+			</script>
 </body>
 
 </html>
