@@ -45,7 +45,7 @@
 
 						<form method="post" action="tarefa_controller.php?acao=inserir">
 							<div class="mb-4">
-								<input type="text" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Exemplo: Lavar o carro" name="tarefa">
+								<input type="text" name="tarefa" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Exemplo: Lavar o carro" >
 							</div>
 
 							<button class="bg-green-500 text-white p-2 rounded-md hover:bg-green-600 transition duration-200">Cadastrar</button>

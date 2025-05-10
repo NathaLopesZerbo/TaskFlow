@@ -26,13 +26,14 @@
 
         print_r($_POST);
 
-        // $tarefa = new Tarefa();
-        // $tarefa->__set('id', $_POST['id']);
+        $tarefa = new Tarefa();
+        $tarefa->__set('id', $_POST['id']);
+        $tarefa->__set('tarefa', $_POST['tarefa']);
 
-        // $conexao = new Conexao();
+        $conexao = new Conexao();
 
-        // $tarefaService = new TarefaService($conexao, $tarefa);
-        // $tarefaService->atualizar();
+        $tarefaService = new TarefaService($conexao, $tarefa);
+        $tarefaService->atualizar();
 
     }
 ?>

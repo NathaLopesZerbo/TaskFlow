@@ -6,7 +6,7 @@ function edit(id, txt_tarefa){
 
     let inputTarefa = document.createElement('input')
     inputTarefa.type = 'text'
-    inputTarefa.name = 'name'
+    inputTarefa.name = 'tarefa'
     inputTarefa.className = 'w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500'
     inputTarefa.value = txt_tarefa
 
