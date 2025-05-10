@@ -15,19 +15,37 @@ require 'tarefa_controller.php';
 </head>
 
 <body>
+
 	<nav class="bg-principal p-4">
 		<div class="container mx-auto flex items-center justify-between">
-			<a href="index.php" class="flex items-center text-lg font-semibold">
-				<img src="img/logo_task_flow.png" width="30" height="30" alt="Logo">
-				<h1 class="text-white text-2xl pb-1">TaskFlow</h1>
-			</a>
+			<div>
+				<a href="index.php" class="flex items-center text-lg font-semibold">
+					<img src="img/logo_task_flow.png" width="30" height="30" alt="Logo">
+					<h1 class="text-white text-2xl pb-1">TaskFlow</h1>
+				</a>
+			</div>
 
 			<div class="relative text-gray-600">
-				<input type="search" name="serch" placeholder="Search" class="bg-white h-10 px-5 pr-10 rounded-xl text-sm focus:outline-none">
+				<div class="absolute flex flex-col">
+					<button id="dropdownButton" class="border-x text-sm border-gray-300 text-gray-600 h-10 px-4 bg-white hover:border-gray-400 focus:outline-none flex items-center justify-between rounded-tl-xl rounded-bl-xl w-40 overflow-hidden truncate whitespace-nowrap">
+						<span id="selectedOption" class="cursor-pointer">
+							Tarefas
+						</span>
+						<i class="fa-solid fa-caret-down"></i>
+					</button>
+
+					<div id="dropdownMenu" class="mt-1 w-full bg-white border border-gray-300 rounded-md shadow-md hidden"></div>
+				</div>
+
+				<input type="text" name="serch" placeholder="Search" class="bg-white h-10 px-[11rem] pr-80 rounded-xl text-sm focus:outline-none">
+
 				<button type="submit" class="absolute right-0 bottom-2 mt-3 mr-4 cursor-pointer">
 					<i class="fa-solid fa-magnifying-glass"></i>
 				</button>
 			</div>
+
+
+
 
 			<a href="#" class="text-white text-2xl">
 				<i class="fa-solid fa-user"></i>
@@ -113,7 +131,48 @@ require 'tarefa_controller.php';
 				function marked(id) {
 					location.href = 'index.php?pag=index&acao=marked&id=' + id;
 				}
+
+				const button = document.getElementById('dropdownButton');
+  const menu = document.getElementById('dropdownMenu');
+  const selected = document.getElementById('selectedOption');
+
+  const options = ["Nova Tarefa", "Pendentes", "Todas Tarefas"];
+
+  function renderMenu(excludeValue) {
+    menu.innerHTML = '';
+    options.forEach(option => {
+      if (option !== excludeValue) {
+        const div = document.createElement('div');
+        div.className = "px-4 py-2 hover:bg-gray-100 cursor-pointer";
+        div.dataset.value = option;
+        div.textContent = option;
+        menu.appendChild(div);
+      }
+    });
+
+    document.querySelectorAll('#dropdownMenu div').forEach(item => {
+      item.addEventListener('click', () => {
+        const newValue = item.dataset.value;
+        selected.textContent = newValue; // Apenas texto
+        renderMenu(newValue);
+        menu.classList.add('hidden');
+      });
+    });
+  }
+
+  renderMenu("Tarefas");
+
+  button.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!button.contains(e.target) && !menu.contains(e.target)) {
+      menu.classList.add('hidden');
+    }
+  });
 			</script>
+
 </body>
 
 </html>
