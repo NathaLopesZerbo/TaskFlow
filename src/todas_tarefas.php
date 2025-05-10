@@ -17,12 +17,39 @@ require 'tarefa_controller.php';
 
 <body>
 
+	<nav class="bg-principal p-4">
+		<div class="container mx-auto flex items-center justify-between">
+			<div>
+				<a href="index.php" class="flex items-center text-lg font-semibold">
+					<img src="img/logo_task_flow.png" width="30" height="30" alt="Logo">
+					<h1 class="text-white text-2xl pb-1">TaskFlow</h1>
+				</a>
+			</div>
 
-	<nav class="bg-gray-100 p-4">
-		<div class="container mx-auto flex items-center">
-			<a class="flex items-center text-lg font-semibold" href="#">
-				<img src="img/logo.png" width="30" height="30" class="mr-2" alt="Logo">
-				App Lista Tarefas
+			<div class="relative text-gray-600">
+				<div class="absolute flex flex-col">
+					<button id="dropdownButton" class="border-x text-sm border-gray-300 text-gray-600 h-10 px-4 bg-white hover:border-gray-400 focus:outline-none flex items-center justify-between rounded-tl-xl rounded-bl-xl w-40 overflow-hidden truncate whitespace-nowrap">
+						<span id="selectedOption" class="cursor-pointer">
+							Tarefas
+						</span>
+						<i class="fa-solid fa-caret-down"></i>
+					</button>
+
+					<div id="dropdownMenu" class="mt-1 w-full bg-white border border-gray-300 rounded-md shadow-md hidden"></div>
+				</div>
+
+				<input type="text" name="serch" placeholder="Search" class="bg-white h-10 px-[11rem] pr-80 rounded-xl text-sm focus:outline-none">
+
+				<button type="submit" class="absolute right-0 bottom-2 mt-3 mr-4 cursor-pointer">
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</button>
+			</div>
+
+
+
+
+			<a href="#" class="text-white text-2xl">
+				<i class="fa-solid fa-user"></i>
 			</a>
 		</div>
 	</nav>
@@ -49,37 +76,113 @@ require 'tarefa_controller.php';
 									<?= $tarefa->tarefa ?> (<?= $tarefa->status ?>)
 								</div>
 								<div class="w-3/12 mt-2 flex justify-between">
-									<i class="fas fa-trash-alt fa-lg text-red-500 cursor-pointer" 
-									onclick="remove(<?=$tarefa->id?>)"></i>
+									<i class="fas fa-trash-alt fa-lg text-red-500 cursor-pointer"
+										onclick="remove(<?= $tarefa->id ?>)"></i>
 
-								<?php if($tarefa->status == 'pendente'){ ?>
-									<i class="fas fa-edit fa-lg text-blue-500 cursor-pointer" onclick="edit(<?= $tarefa->id ?>,'<?= $tarefa->tarefa ?>')"></i>
-									<i class="fas fa-check-square fa-lg text-green-500 cursor-pointer" onclick="marked(<?= $tarefa->id ?>)"></i>
+									<?php if ($tarefa->status == 'pendente') { ?>
+										<i class="fas fa-edit fa-lg text-blue-500 cursor-pointer" onclick="edit(<?= $tarefa->id ?>,'<?= $tarefa->tarefa ?>')"></i>
+										<i class="fas fa-check-square fa-lg text-green-500 cursor-pointer" onclick="marked(<?= $tarefa->id ?>)"></i>
 
-								<?php } ?>
+									<?php } ?>
 
 
-									
+
 
 								</div>
 							</div>
 						<?php } ?>
-
-
-
-
-
-
-
-
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script>
+		const button = document.getElementById('dropdownButton');
+		const menu = document.getElementById('dropdownMenu');
+		const selected = document.getElementById('selectedOption');
+
+		const options = ["Nova Tarefa", "Pendentes", "Todas Tarefas"];
+
+		function renderMenu(excludeValue) {
+			menu.innerHTML = '';
+			options.forEach(option => {
+				if (option !== excludeValue) {
+					const div = document.createElement('div');
+					div.className = "px-4 py-2 hover:bg-gray-100 cursor-pointer";
+					div.dataset.value = option;
+					div.textContent = option;
+					menu.appendChild(div);
+				}
+			});
+
+			document.querySelectorAll('#dropdownMenu div').forEach(item => {
+				item.addEventListener('click', () => {
+					const newValue = item.dataset.value;
+					selected.textContent = newValue;
+					renderMenu(newValue);
+					menu.classList.add('hidden');
+				});
+			});
+		}
+
+		renderMenu("Tarefas");
+
+		button.addEventListener('click', () => {
+			menu.classList.toggle('hidden');
+		});
+
+		document.addEventListener('click', (e) => {
+			if (!button.contains(e.target) && !menu.contains(e.target)) {
+				menu.classList.add('hidden');
+			}
+		});
 
 
-	<script src="../src/js/todas_tarefas.js"></script>
+
+		function edit(id, txt_tarefa) {
+			let form = document.createElement('form')
+			form.action = 'tarefa_controller.php?acao=atualizar'
+			form.method = 'post'
+			form.className = 'flex p-5'
+
+			let inputTarefa = document.createElement('input')
+			inputTarefa.type = 'text'
+			inputTarefa.name = 'tarefa'
+			inputTarefa.className = 'w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500'
+			inputTarefa.value = txt_tarefa
+
+			let inputId = document.createElement('input')
+			inputId.type = 'hidden'
+			inputId.name = 'id'
+			inputId.value = id
+
+			let button = document.createElement('button')
+			button.type = 'submit'
+			button.className = 'bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded'
+			button.innerHTML = 'Atualizar'
+
+			form.appendChild(inputTarefa)
+
+			form.appendChild(inputId)
+
+			form.appendChild(button)
+
+			let tarefa = document.getElementById('tarefa_' + id)
+
+			tarefa.innerHTML = "";
+
+			tarefa.insertBefore(form, tarefa[0])
+
+		}
+
+		function remove(id) {
+			location.href = 'todas_tarefas.php?acao=remove&id=' + id;
+		}
+
+		function marked(id) {
+			location.href = 'todas_tarefas.php?acao=marked&id=' + id;
+		}
+	</script>
 </body>
 
 </html>

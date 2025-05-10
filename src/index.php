@@ -133,44 +133,44 @@ require 'tarefa_controller.php';
 				}
 
 				const button = document.getElementById('dropdownButton');
-  const menu = document.getElementById('dropdownMenu');
-  const selected = document.getElementById('selectedOption');
+				const menu = document.getElementById('dropdownMenu');
+				const selected = document.getElementById('selectedOption');
 
-  const options = ["Nova Tarefa", "Pendentes", "Todas Tarefas"];
+				const options = ["Nova Tarefa", "Pendentes", "Todas Tarefas"];
 
-  function renderMenu(excludeValue) {
-    menu.innerHTML = '';
-    options.forEach(option => {
-      if (option !== excludeValue) {
-        const div = document.createElement('div');
-        div.className = "px-4 py-2 hover:bg-gray-100 cursor-pointer";
-        div.dataset.value = option;
-        div.textContent = option;
-        menu.appendChild(div);
-      }
-    });
+				function renderMenu(excludeValue) {
+					menu.innerHTML = '';
+					options.forEach(option => {
+						if (option !== excludeValue) {
+							const div = document.createElement('div');
+							div.className = "px-4 py-2 hover:bg-gray-100 cursor-pointer";
+							div.dataset.value = option;
+							div.textContent = option;
+							menu.appendChild(div);
+						}
+					});
 
-    document.querySelectorAll('#dropdownMenu div').forEach(item => {
-      item.addEventListener('click', () => {
-        const newValue = item.dataset.value;
-        selected.textContent = newValue; // Apenas texto
-        renderMenu(newValue);
-        menu.classList.add('hidden');
-      });
-    });
-  }
+					document.querySelectorAll('#dropdownMenu div').forEach(item => {
+						item.addEventListener('click', () => {
+							const newValue = item.dataset.value;
+							selected.textContent = newValue;
+							renderMenu(newValue);
+							menu.classList.add('hidden');
+						});
+					});
+				}
 
-  renderMenu("Tarefas");
+				renderMenu("Tarefas");
 
-  button.addEventListener('click', () => {
-    menu.classList.toggle('hidden');
-  });
+				button.addEventListener('click', () => {
+					menu.classList.toggle('hidden');
+				});
 
-  document.addEventListener('click', (e) => {
-    if (!button.contains(e.target) && !menu.contains(e.target)) {
-      menu.classList.add('hidden');
-    }
-  });
+				document.addEventListener('click', (e) => {
+					if (!button.contains(e.target) && !menu.contains(e.target)) {
+						menu.classList.add('hidden');
+					}
+				});
 			</script>
 
 </body>
