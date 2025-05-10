@@ -49,6 +49,24 @@
 		</div>
 	</nav>
 
+		<?php if (isset($_GET['erro']) && $_GET['erro'] == 1): ?>
+		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+				Toastify({
+					text: "Campo Vazio",
+					duration: 3000,
+					close: true,
+					gravity: "top",
+					position: "right",
+					stopOnFocus: true,
+					style: {
+						background: "#c81010",
+					},
+				}).showToast();
+			});
+		</script>
+	<?php endif; ?>
+
 	<?php if (isset($_GET['inclusao']) && $_GET['inclusao'] == 1): ?>
 		<script>
 			document.addEventListener("DOMContentLoaded", function() {

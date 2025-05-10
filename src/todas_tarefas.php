@@ -1,7 +1,6 @@
 <?php
 $acao = 'recuperar';
 require 'tarefa_controller.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +14,7 @@ require 'tarefa_controller.php';
 	<title>TaskFlow</title>
 </head>
 
-<body class="bg-fundo">
+<body>
 
 	<nav class="bg-principal p-4">
 		<div class="container mx-auto flex items-center justify-between">
@@ -29,24 +28,17 @@ require 'tarefa_controller.php';
 			<div class="relative text-gray-600">
 				<div class="absolute flex flex-col">
 					<button id="dropdownButton" class="border-x text-sm border-gray-300 text-gray-600 h-10 px-4 bg-white hover:border-gray-400 focus:outline-none flex items-center justify-between rounded-tl-xl rounded-bl-xl w-40 overflow-hidden truncate whitespace-nowrap">
-						<span id="selectedOption" class="cursor-pointer">
-							Tarefas
-						</span>
+						<span id="selectedOption" class="cursor-pointer">Tarefas</span>
 						<i class="fa-solid fa-caret-down"></i>
 					</button>
-
 					<div id="dropdownMenu" class="mt-1 w-full bg-white border border-gray-300 rounded-md shadow-md hidden"></div>
 				</div>
 
-				<input type="text" name="serch" placeholder="Search" class="bg-white h-10 px-[11rem] pr-80 rounded-xl text-sm focus:outline-none">
-
+				<input type="text" name="search" placeholder="Search" class="bg-white h-10 px-[11rem] pr-80 rounded-xl text-sm focus:outline-none">
 				<button type="submit" class="absolute right-0 bottom-2 mt-3 mr-4 cursor-pointer">
 					<i class="fa-solid fa-magnifying-glass"></i>
 				</button>
 			</div>
-
-
-
 
 			<a href="#" class="text-white text-2xl">
 				<i class="fa-solid fa-user"></i>
@@ -61,24 +53,30 @@ require 'tarefa_controller.php';
 					<h4 class="text-xl font-semibold">Todas Tarefas</h4>
 					<hr class="border-gray-300" />
 
+					<?php if (count($tarefas) === 0): ?>
+						<p class="text-gray-500 text-center mt-4">Nenhuma tarefa cadastrada.</p>
+					<?php endif; ?>
+
 					<?php foreach ($tarefas as $indice => $tarefa) { ?>
 						<div class="flex items-center justify-between bg-white p-4 rounded shadow-sm tarefa">
 							<div class="text-gray-800 w-8/12" id="tarefa_<?= $tarefa->id ?>">
-								<div class="font-semibold text-lg text-indigo-600"><?= $tarefa->titulo_tarefa ?></div>
-
-								<?= $tarefa->tarefa ?>
-								<span class="text-sm text-gray-500">(<?= $tarefa->status ?>)</span>
+								<strong class="block"><?= htmlspecialchars($tarefa->titulo_tarefa) ?></strong>
+								<?= htmlspecialchars($tarefa->tarefa) ?> 
+								<span class="text-sm text-gray-500">(<?= htmlspecialchars($tarefa->status) ?>)</span>
 							</div>
 
 							<div class="flex items-center gap-4">
 								<i class="fas fa-trash-alt text-red-500 hover:text-red-600 cursor-pointer"
-									onclick="remove(<?= $tarefa->id ?>)"></i>
+								   onclick="remove(<?= $tarefa->id ?>)"></i>
 
 								<?php if ($tarefa->status == 'pendente') { ?>
 									<i class="fas fa-edit text-blue-500 hover:text-blue-600 cursor-pointer"
-										onclick="edit(<?= $tarefa->id ?>, '<?= $tarefa->tarefa ?>')"></i>
+									   data-id="<?= $tarefa->id ?>"
+									   data-tarefa="<?= htmlspecialchars(addslashes($tarefa->tarefa)) ?>"
+									   onclick="editFromData(this)"></i>
+
 									<i class="fas fa-check-square text-green-500 hover:text-green-600 cursor-pointer"
-										onclick="marked(<?= $tarefa->id ?>)"></i>
+									   onclick="marked(<?= $tarefa->id ?>)"></i>
 								<?php } ?>
 							</div>
 						</div>
@@ -87,6 +85,32 @@ require 'tarefa_controller.php';
 			</div>
 		</div>
 	</div>
+
+	<!-- Feedback por Toastify -->
+	<?php if (isset($_GET['removido']) && $_GET['removido'] == 1): ?>
+		<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+		<script>
+			Toastify({
+				text: "Tarefa removida com sucesso!",
+				duration: 3000,
+				close: true,
+				gravity: "top",
+				position: "right",
+				style: {
+					background: "#c81010",
+				},
+			}).showToast();
+		</script>
+	<?php endif; ?>
+
+	<script>
+		function editFromData(element) {
+			const id = element.getAttribute('data-id');
+			const tarefa = element.getAttribute('data-tarefa');
+			edit(id, tarefa);
+		}
+	</script>
 
 	<script src="../src/js/index.js"></script>
 </body>

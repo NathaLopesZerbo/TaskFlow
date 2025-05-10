@@ -4,6 +4,7 @@ class Tarefa {
     private $id;
     private $id_status;
     private $tarefa;
+    private $titulo_tarefa;
     private $data_cadastro;
 
     public function __get($atributo) {
@@ -15,3 +16,4 @@ class Tarefa {
          return $this;
     }
 }
+?>

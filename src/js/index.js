@@ -2,13 +2,11 @@ const button = document.getElementById('dropdownButton');
 const menu = document.getElementById('dropdownMenu');
 const selected = document.getElementById('selectedOption');
 
-
 const options = [
     { label: "Nova Tarefa", url: "../src/nova_tarefa.php" },
     { label: "Pendentes", url: "../src/index.php" },
     { label: "Todas Tarefas", url: "../src/todas_tarefas.php" }
 ];
-
 
 let currentLabel = localStorage.getItem('selectedLabel') || "Todas Tarefas";
 selected.textContent = currentLabel;
@@ -48,42 +46,47 @@ document.addEventListener('click', (e) => {
     }
 });
 
+function edit(id, txt_titulo, txt_tarefa) {
+    console.log('ID:', id); // Verifique se o ID está correto
+    console.log('Título:', txt_titulo); // Verifique se o título está correto
+    console.log('Tarefa:', txt_tarefa); // Verifique se a descrição está correta
 
+    let form = document.createElement('form');
+    form.action = 'tarefa_controller.php?acao=atualizar';
+    form.method = 'post';
+    form.className = 'flex p-5';
 
-function edit(id, txt_tarefa) {
-    let form = document.createElement('form')
-    form.action = 'tarefa_controller.php?acao=atualizar'
-    form.method = 'post'
-    form.className = 'flex p-5'
+    let inputTitulo = document.createElement('input');
+    inputTitulo.type = 'text';
+    inputTitulo.name = 'titulo';
+    inputTitulo.className = 'w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500';
+    inputTitulo.value = txt_titulo;
 
-    let inputTarefa = document.createElement('input')
-    inputTarefa.type = 'text'
-    inputTarefa.name = 'tarefa'
-    inputTarefa.className = 'w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500'
-    inputTarefa.value = txt_tarefa
+    let inputTarefa = document.createElement('input');
+    inputTarefa.type = 'text';
+    inputTarefa.name = 'tarefa';
+    inputTarefa.className = 'w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500';
+    inputTarefa.value = txt_tarefa;
 
-    let inputId = document.createElement('input')
-    inputId.type = 'hidden'
-    inputId.name = 'id'
-    inputId.value = id
+    let inputId = document.createElement('input');
+    inputId.type = 'hidden';
+    inputId.name = 'id';
+    inputId.value = id;
 
-    let button = document.createElement('button')
-    button.type = 'submit'
-    button.className = 'bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded'
-    button.innerHTML = 'Atualizar'
+    let button = document.createElement('button');
+    button.type = 'submit';
+    button.className = 'bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded';
+    button.innerHTML = 'Atualizar';
 
-    form.appendChild(inputTarefa)
+    form.appendChild(inputTitulo);
+    form.appendChild(inputTarefa);
+    form.appendChild(inputId);
+    form.appendChild(button);
 
-    form.appendChild(inputId)
+    let tarefa = document.getElementById('tarefa_' + id);
+    tarefa.innerHTML = ''; 
 
-    form.appendChild(button)
-
-    let tarefa = document.getElementById('tarefa_' + id)
-
-    tarefa.innerHTML = "";
-
-    tarefa.insertBefore(form, tarefa[0])
-
+    tarefa.appendChild(form); 
 }
 
 function remove(id) {
