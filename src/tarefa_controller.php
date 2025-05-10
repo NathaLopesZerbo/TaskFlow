@@ -33,7 +33,9 @@
         $conexao = new Conexao();
 
         $tarefaService = new TarefaService($conexao, $tarefa);
-        $tarefaService->atualizar();
+        if($tarefaService->update()){
+            header('location: todas_tarefas.php');
+        }
 
     }
 ?>
