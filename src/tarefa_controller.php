@@ -23,6 +23,16 @@
         $tarefaService = new TarefaService($conexao, $tarefa);
         $tarefas = $tarefaService->recover();
     } else if ($acao == 'atualizar'){
+
         print_r($_POST);
+
+        // $tarefa = new Tarefa();
+        // $tarefa->__set('id', $_POST['id']);
+
+        // $conexao = new Conexao();
+
+        // $tarefaService = new TarefaService($conexao, $tarefa);
+        // $tarefaService->atualizar();
+
     }
 ?>
