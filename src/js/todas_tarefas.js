@@ -1,4 +1,4 @@
-function edit(id, txt_tarefa){
+function edit(id, txt_tarefa) {
     let form = document.createElement('form')
     form.action = 'tarefa_controller.php?acao=atualizar'
     form.method = 'post'
@@ -26,7 +26,7 @@ function edit(id, txt_tarefa){
 
     form.appendChild(button)
 
-    let tarefa = document.getElementById('tarefa_'+id)
+    let tarefa = document.getElementById('tarefa_' + id)
 
     tarefa.innerHTML = "";
 
@@ -35,6 +35,10 @@ function edit(id, txt_tarefa){
 }
 
 
-    function remove(id){
-        location.href = 'todas_tarefas.php?acao=remover&id='+id;
-    }
+function remove(id) {
+    location.href = 'todas_tarefas.php?acao=remove&id=' + id;
+}
+
+function marked(id){
+    location.href = 'todas_tarefas.php?acao=marked&id=' + id;
+}

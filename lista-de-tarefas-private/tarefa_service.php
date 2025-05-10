@@ -49,6 +49,14 @@
         $stmt->execute();
     }
 
+       public function marked(){
+        $query = 'update tb_tarefas set id_status = ? where id= ?';
+        $stmt = $this->conexao->prepare($query);
+        $stmt->bindValue(1, $this->tarefa->__get('id_status'));
+        $stmt->bindValue(2, $this->tarefa->__get('id'));
+        return $stmt->execute();
+    }
+    
 
 
  }
