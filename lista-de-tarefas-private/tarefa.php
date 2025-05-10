@@ -12,5 +12,6 @@ class Tarefa {
 
     public function __set($atributo, $valor) {
          $this->$atributo = $valor;
+         return $this;
     }
 }
