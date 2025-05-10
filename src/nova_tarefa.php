@@ -77,13 +77,12 @@
 					<div class="space-y-6">
 						<h4 class="text-xl font-semibold">Nova tarefa</h4>
 						<hr />
-
 						<form method="post" action="tarefa_controller.php?acao=inserir">
 							<div class="mb-4">
 								<h1>Título</h1>
-								<input type="text" name="name" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Exemplo: Lavar o carro">
+								<input type="text" name="titulo_tarefa" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Mercado">
 								<h1>Descrição</h1>
-								<input type="text" name="tarefa" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Exemplo: Lavar o carro">
+								<input type="text" name="tarefa" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Exemplo: Comprar frutas">
 							</div>
 
 							<button class="bg-green-500 text-white p-2 rounded-md hover:bg-green-600 transition duration-200">Cadastrar</button>

@@ -15,10 +15,11 @@ create table tb_tarefas(
 	id int not null primary key auto_increment,
     id_status int not null default 1,
     foreign key(id_status) references tb_status(id),
+    titulo_tarefa varchar(25) not null,
 	tarefa text not null,
     data_cadastrado datetime not null default current_timestamp
 )
-
+    
 create table tb_usuarios(
 	id int not null primary key auto_increment,
 	nome varchar(50) not null,

@@ -9,7 +9,9 @@
 
     if($acao == 'inserir'){
         $tarefa = new Tarefa();
-        $tarefa->__set('tarefa', $_POST['tarefa']); 
+        $tarefa->__set('tarefa', $_POST['tarefa']);
+        $tarefa->__set('titulo_tarefa', $_POST['titulo_tarefa']);
+
         
         $conexao = new Conexao();
         $tarefaService = new TarefaService($conexao, $tarefa);
