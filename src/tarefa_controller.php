@@ -6,7 +6,6 @@ require "../lista-de-tarefas-private/conexao.php";
 
 $acao = isset($_GET['acao']) ? $_GET['acao'] : $acao;
 
-
 if ($acao == 'inserir') {
     if (empty($_POST['tarefa']) || empty($_POST['titulo_tarefa'])) {
         header('Location: nova_tarefa.php?erro=1');
@@ -15,7 +14,7 @@ if ($acao == 'inserir') {
 
     $tarefa = new Tarefa();
     $tarefa->__set('tarefa', $_POST['tarefa'])
-           ->__set('titulo_tarefa', $_POST['titulo_tarefa']);
+           ->__set('titulo_tarefa', $_POST['titulo_tarefa']); // Incluindo título na inserção
 
     $conexao = new Conexao();
     $tarefaService = new TarefaService($conexao, $tarefa);
@@ -30,11 +29,15 @@ if ($acao == 'inserir') {
     $tarefaService = new TarefaService($conexao, $tarefa);
     $tarefas = $tarefaService->recover();
 } else if ($acao == 'atualizar') {
-
-    print_r($_POST);
+    if (empty($_POST['tarefa']) || empty($_POST['titulo_tarefa'])) {
+        header('Location: todas_tarefas.php?erro=1');
+        exit;
+    }
 
     $tarefa = new Tarefa();
-    $tarefa->__set('id', $_POST['id'])->__set('tarefa', $_POST['tarefa']);
+    $tarefa->__set('id', $_POST['id'])
+           ->__set('tarefa', $_POST['tarefa'])
+           ->__set('titulo_tarefa', $_POST['titulo_tarefa']); // Incluindo título na atualização
 
     $conexao = new Conexao();
 
@@ -81,3 +84,4 @@ if ($acao == 'inserir') {
     $tarefaService = new TarefaService($conexao, $tarefa);
     $tarefas = $tarefaService->pendingTasks();
 }
+?>
