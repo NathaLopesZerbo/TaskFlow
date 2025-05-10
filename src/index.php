@@ -14,7 +14,7 @@ require 'tarefa_controller.php';
 	<title>TaskFlow</title>
 </head>
 
-<body>
+<body class="bg-fundo">
 
 	<nav class="bg-principal p-4">
 		<div class="container mx-auto flex items-center justify-between">
@@ -50,38 +50,50 @@ require 'tarefa_controller.php';
 		</div>
 	</nav>
 
-	<div class="container mx-auto mt-6"> 
-			<div class="w-3/4 pl-6">
-    <div class="space-y-6">
-        <h4 class="text-xl font-semibold">Tarefas Pendentes</h4>
-        <hr class="border-gray-300" />
 
-        <?php foreach ($tarefas as $indice => $tarefa) { ?>
-            <div class="flex items-center justify-between bg-white p-4 rounded shadow-sm tarefa mb-3">
-                <div class="w-9/12 text-gray-800" id="tarefa_<?= $tarefa->id ?>">
-                    <?= $tarefa->tarefa ?>
-                </div>
-                <div class="w-3/12 flex items-center justify-end gap-4 mt-1">
-                    <i class="fas fa-trash-alt fa-lg text-red-500 hover:text-red-600 cursor-pointer"
-                        onclick="remove(<?= $tarefa->id ?>)"></i>
-                    <i class="fas fa-edit fa-lg text-blue-500 hover:text-blue-600 cursor-pointer"
-                        onclick="edit(<?= $tarefa->id ?>,'<?= $tarefa->tarefa ?>')"></i>
-                    <i class="fas fa-check-square fa-lg text-green-500 hover:text-green-600 cursor-pointer"
-                        onclick="marked(<?= $tarefa->id ?>)"></i>
-                </div>
+	<div class="container mx-auto mt-6">
+    <div class="flex">
+        <div class="w-full px-4">
+            <div class="space-y-6">
+                <h4 class="text-xl font-semibold">Tarefas Pendentes</h4>
+                <hr class="border-gray-300" />
+
+                <?php foreach ($tarefas as $indice => $tarefa) { ?>
+                    <div class="flex items-center justify-between bg-white p-4 rounded shadow-sm tarefa">
+                        <!-- Conteúdo da Tarefa -->
+                        <div class="text-gray-800 w-8/12" id="tarefa_<?= $tarefa->id ?>">
+                            <div class="font-semibold text-lg text-indigo-600">
+                                <?= $tarefa->titulo_tarefa ?>
+                            </div>
+                            <?= $tarefa->tarefa ?>
+                            <span class="text-sm text-gray-500">(<?= $tarefa->status ?>)</span>
+                        </div>
+
+                        <!-- Ações -->
+                        <div class="flex items-center gap-4">
+                            <i class="fas fa-trash-alt text-red-500 hover:text-red-600 cursor-pointer"
+                               onclick="remove(<?= $tarefa->id ?>)"></i>
+
+                            <?php if ($tarefa->status == 'pendente') { ?>
+                                <i class="fas fa-edit text-blue-500 hover:text-blue-600 cursor-pointer"
+                                   onclick="edit(<?= $tarefa->id ?>, '<?= $tarefa->tarefa ?>')"></i>
+                                <i class="fas fa-check-square text-green-500 hover:text-green-600 cursor-pointer"
+                                   onclick="marked(<?= $tarefa->id ?>)"></i>
+                            <?php } ?>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
-        <?php } ?>
+        </div>
     </div>
 </div>
 
-	</div>
-
-	
 
 
-				
 
-			<script src="../src/js/index.js"></script>
+
+
+	<script src="../src/js/index.js"></script>
 </body>
 
 </html>
