@@ -21,15 +21,20 @@
 
     //Read
     public function recover(){
-      $query = 'select id, id_status, tarefa, data_cadastrado from tb_tarefas';
+      $query = '
+      select 
+        t.id, s.status, t.tarefa, t.data_cadastrado 
+      from 
+        tb_tarefas as t
+        left join tb_status as s on (t.id_status = s.id)';
       $stmt = $this->conexao->prepare($query);
       $stmt->execute();
       return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
     //Update
-     public function update(){
-        
+     public function atualizar(){
+        print_r($this->tarefa);
     }
     
     //delete

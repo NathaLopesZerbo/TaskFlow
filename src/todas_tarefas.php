@@ -1,8 +1,7 @@
+<?php
+$acao = 'recuperar';
+require 'tarefa_controller.php';
 
-<?php 
-	$acao = 'recuperar';
-	require 'tarefa_controller.php';
-	print_r($tarefas)
 ?>
 
 <!DOCTYPE html>
@@ -41,12 +40,28 @@
 			<div class="w-3/4 pl-6">
 				<div class="container">
 					<div class="space-y-6">
-						<h4 class="text-xl font-semibold">Todas tarefas</h4>
+						<h4 class="text-xl font-semibol	d">Todas tarefas</h4>
 						<hr />
 
-					
+					<?php foreach ($tarefas as $indice => $tarefa) { ?>
+	<div class="flex items-center mb-3 tarefa">
+		<div class="w-9/12" id="tarefa_<?= $tarefa->id ?>">
+			<?= $tarefa->tarefa ?> (<?= $tarefa->status?>)	
+		</div>
+		<div class="w-3/12 mt-2 flex justify-between">
+			<i class="fas fa-trash-alt fa-lg text-red-500 cursor-pointer"></i>
+			<i class="fas fa-edit fa-lg text-blue-500 cursor-pointer" onclick="edit(<?= $tarefa->id ?>,'<?= $tarefa->tarefa ?>')"></i>
+			<i class="fas fa-check-square fa-lg text-green-500 cursor-pointer"></i>
+		</div>
+	</div>
+<?php } ?>
 
-						
+
+
+
+
+
+
 
 					</div>
 				</div>
@@ -55,7 +70,7 @@
 	</div>
 
 
-
+	<script src="../src/js/todas_tarefas.js"></script>
 </body>
 
 </html>

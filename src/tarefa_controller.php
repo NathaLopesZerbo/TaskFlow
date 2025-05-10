@@ -1,8 +1,8 @@
 <?php 
 
-    require "../../lista-de-tarefas-private/tarefa.php";
-    require "../../lista-de-tarefas-private/tarefa_service.php";
-    require "../../lista-de-tarefas-private/conexao.php";
+    require "../lista-de-tarefas-private/tarefa.php";
+    require "../lista-de-tarefas-private/tarefa_service.php";
+    require "../lista-de-tarefas-private/conexao.php";
 
     $acao = isset($_GET['acao']) ? $_GET['acao'] : $acao;
 
@@ -22,5 +22,7 @@
 
         $tarefaService = new TarefaService($conexao, $tarefa);
         $tarefas = $tarefaService->recover();
+    } else if ($acao == 'atualizar'){
+        print_r($_POST);
     }
 ?>
