@@ -19,7 +19,7 @@ require 'tarefa_controller.php';
 	<nav class="bg-principal p-4">
 		<div class="container mx-auto flex items-center justify-between">
 			<div>
-				<a href="index.php" class="flex items-center text-lg font-semibold">
+				<a href="nova_tarefa.php" class="flex items-center text-lg font-semibold">
 					<img src="img/logo_task_flow.png" width="30" height="30" alt="Logo">
 					<h1 class="text-white text-2xl pb-1">TaskFlow</h1>
 				</a>
