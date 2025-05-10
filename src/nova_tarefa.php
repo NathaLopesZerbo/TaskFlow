@@ -4,6 +4,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="css/build.css">
 	<title>TaskFlow</title>
@@ -47,13 +49,25 @@
 			</div>
 		</nav>
 
-	<?php if(isset($_GET['inclusao']) && $_GET['inclusao'] == 1){ ?>
-		<div class="bg-green-500 p-2 text-white flex content-center justify-center text-xl">
-			<h1>Tarefa Inserida com Sucesso!</h1>
-		</div>
-	<?php } ?>
+<?php if (isset($_GET['inclusao']) && $_GET['inclusao'] == 1): ?>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Toastify({
+                text: "Tarefa inserida com sucesso!",
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
+                style: {
+                    background: "#5C88A2",
+                },
+            }).showToast();
+        });
+    </script>
+<?php endif; ?>
 
-	
+		
 
 	<div class="container mx-auto mt-6">
 		<div class="flex">
@@ -87,48 +101,7 @@
 		</div>
 	</div>
 
-	<script>
-		const button = document.getElementById('dropdownButton');
-const menu = document.getElementById('dropdownMenu');
-const selected = document.getElementById('selectedOption');
-
-const options = ["Nova Tarefa", "Pendentes", "Todas Tarefas"];
-
-function renderMenu(excludeValue) {
-    menu.innerHTML = '';
-    options.forEach(option => {
-        if (option !== excludeValue) {
-            const div = document.createElement('div');
-            div.className = "px-4 py-2 hover:bg-gray-100 cursor-pointer";
-            div.dataset.value = option;
-            div.textContent = option;
-            menu.appendChild(div);
-        }
-    });
-
-    document.querySelectorAll('#dropdownMenu div').forEach(item => {
-        item.addEventListener('click', () => {
-            const newValue = item.dataset.value;
-            selected.textContent = newValue;
-            renderMenu(newValue);
-            menu.classList.add('hidden');
-        });
-    });
-}
-
-renderMenu("Tarefas");
-
-button.addEventListener('click', () => {
-    menu.classList.toggle('hidden');
-});
-
-document.addEventListener('click', (e) => {
-    if (!button.contains(e.target) && !menu.contains(e.target)) {
-        menu.classList.add('hidden');
-    }
-});
-
-	</script>
+	<script src="../src/js/index.js"></script>
 </body>
 
 </html>
