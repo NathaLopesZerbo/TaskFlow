@@ -84,4 +84,7 @@ if ($acao == 'inserir') {
     $tarefaService = new TarefaService($conexao, $tarefa);
     $tarefas = $tarefaService->pendingTasks();
 }
+
+
+
 ?>
