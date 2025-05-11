@@ -1,8 +1,13 @@
 <?php
-$acao = 'pendingTasks';
-require 'tarefa_controller.php';
 
 session_start(); 
+if (!isset($_SESSION['usuario'])) {
+    header('Location: login.php');
+    exit;
+}
+
+$acao = 'pendingTasks';
+require 'tarefa_controller.php';
 ?>
 
 

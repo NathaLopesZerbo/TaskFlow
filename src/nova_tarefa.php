@@ -1,6 +1,11 @@
-<?php 
-session_start(); 
+<?php
+session_start(); // Inicia a sessão
+if (!isset($_SESSION['usuario'])) {
+    header('Location: login.php');
+    exit;
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -47,14 +52,16 @@ session_start();
 			<a href="login.php" class="text-white text-2xl">
 				<?php if (isset($_SESSION['usuario'])): ?>
 					<span>Olá, <?php echo $_SESSION['usuario']; ?></span> 
+					<a href="logout.php" class="ml-4 text-red-500 hover:text-red-700">Sair</a> 
 				<?php else: ?>
 					<i class="fa-solid fa-user"></i> 
 				<?php endif; ?>
 			</a>
+
 		</div>
 	</nav>
 
-		<?php if (isset($_GET['erro']) && $_GET['erro'] == 1): ?>
+	<?php if (isset($_GET['erro']) && $_GET['erro'] == 1): ?>
 		<script>
 			document.addEventListener("DOMContentLoaded", function() {
 				Toastify({
@@ -93,30 +100,30 @@ session_start();
 
 
 	<div class="container mx-auto mt-6">
-	<div class="flex justify-center">
-		<div class="w-3/4 pl-6">
-			<div class="container">
-				<div class="space-y-6">
-					<h4 class="text-xl font-semibold text-center">Nova Tarefa</h4>
-					<hr class="border-gray-300" />
-					<form method="post" action="tarefa_controller.php?acao=inserir">
-						<div class="mb-4">
-							<h1 class="text-lg font-semibold text-gray-700">Título</h1>
-							<input type="text" name="titulo_tarefa" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Mercado">
-							
-							<h1 class="text-lg font-semibold text-gray-700 mt-4">Descrição</h1>
-							<input type="text" name="tarefa" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Exemplo: Comprar frutas">
-						</div>
+		<div class="flex justify-center">
+			<div class="w-3/4 pl-6">
+				<div class="container">
+					<div class="space-y-6">
+						<h4 class="text-xl font-semibold text-center">Nova Tarefa</h4>
+						<hr class="border-gray-300" />
+						<form method="post" action="tarefa_controller.php?acao=inserir">
+							<div class="mb-4">
+								<h1 class="text-lg font-semibold text-gray-700">Título</h1>
+								<input type="text" name="titulo_tarefa" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Mercado">
 
-						<button class="bg-botoes text-white p-2 rounded-md hover:bg-principal transition duration-200 w-full cursor-pointer	">
-							Cadastrar
-						</button>
-					</form>
+								<h1 class="text-lg font-semibold text-gray-700 mt-4">Descrição</h1>
+								<input type="text" name="tarefa" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Exemplo: Comprar frutas">
+							</div>
+
+							<button class="bg-botoes text-white p-2 rounded-md hover:bg-principal transition duration-200 w-full cursor-pointer	">
+								Cadastrar
+							</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
 
 	<script src="../src/js/index.js"></script>
