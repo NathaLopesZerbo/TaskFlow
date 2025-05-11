@@ -1,9 +1,10 @@
 <?php
-session_start(); // Inicia a sessão
-if (!isset($_SESSION['usuario'])) {
+session_start();
+if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
     exit;
 }
+
 ?>
 
 <!DOCTYPE html>

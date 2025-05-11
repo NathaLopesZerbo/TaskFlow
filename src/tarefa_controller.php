@@ -6,6 +6,7 @@ require "../lista-de-tarefas-private/conexao.php";
 
 $acao = isset($_GET['acao']) ? $_GET['acao'] : $acao;
 
+// Ação de login
 if ($acao === 'login') {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = $_POST['email'];
@@ -31,31 +32,25 @@ if ($acao === 'login') {
             // Pegar os dados do usuário
             $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            // Depuração: mostrar os dados do usuário
-            var_dump($usuario); // Use para ver o conteúdo de $usuario
-            echo "Senha fornecida: $senha<br>";
-            echo "Senha no banco: " . $usuario['senha'] . "<br>";
-
-            // Verificar se a senha fornecida é válida (sem criptografia)
+            // Verificar se a senha fornecida é válida
             if ($senha === $usuario['senha']) {
                 session_start();
-                $_SESSION['usuario'] = $usuario['nome']; 
+                $_SESSION['usuario'] = $usuario['nome'];
+                $_SESSION['usuario_id'] = $usuario['id'];  // Armazenar o ID do usuário para referência futura
                 header('Location: todas_tarefas.php');
                 exit;
             } else {
-                echo "Senha incorreta!";
                 header('Location: login.php?erro=1'); // Senha incorreta
                 exit;
             }
         } else {
-            // Se o usuário não foi encontrado
-            echo "Usuário não encontrado!";
             header('Location: login.php?erro=1'); // E-mail não encontrado
             exit;
         }
     }
 }
 
+// Ação de registro
 if ($acao === 'register') {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nome = $_POST['nome'];
@@ -65,23 +60,21 @@ if ($acao === 'register') {
         $conexao = new Conexao();
         $pdo = $conexao->connect();
 
-        // Prevenção de SQL Injection
         $sql = "INSERT INTO tb_usuarios (nome, email, senha) VALUES (?, ?, ?)";
         $stmt = $pdo->prepare($sql);
 
         try {
             $stmt->execute([$nome, $email, $senha]); // Armazenando a senha em texto simples
-            // Após o cadastro bem-sucedido, redireciona para login.php
             header("Location: login.php?sucesso=1");
             exit;
         } catch (PDOException $e) {
-            // Caso ocorra algum erro no cadastro
             header("Location: register.php?erro=" . urlencode("Erro ao cadastrar: " . $e->getMessage()));
             exit;
         }
     }
 }
 
+// Ação de inserir tarefa
 if ($acao == 'inserir') {
     if (empty($_POST['tarefa']) || empty($_POST['titulo_tarefa'])) {
         header('Location: nova_tarefa.php?erro=1');
@@ -90,21 +83,27 @@ if ($acao == 'inserir') {
 
     $tarefa = new Tarefa();
     $tarefa->__set('tarefa', $_POST['tarefa'])
-           ->__set('titulo_tarefa', $_POST['titulo_tarefa']); 
-           
+           ->__set('titulo_tarefa', $_POST['titulo_tarefa'])
+           ->__set('id_usuario', $_SESSION['usuario_id']); // Associar a tarefa ao usuário logado
+
     $conexao = new Conexao();
     $tarefaService = new TarefaService($conexao, $tarefa);
     $tarefaService->insert();
 
     header('Location: nova_tarefa.php?inclusao=1');
-        
-} else if ($acao == 'recuperar') {
+}
+
+// Ação de recuperar tarefas
+else if ($acao == 'recuperar') {
     $tarefa = new Tarefa();
     $conexao = new Conexao();
 
     $tarefaService = new TarefaService($conexao, $tarefa);
     $tarefas = $tarefaService->recover();
-} else if ($acao == 'atualizar') {
+}
+
+// Ação de atualizar tarefa
+else if ($acao == 'atualizar') {
     if (empty($_POST['tarefa']) || empty($_POST['titulo_tarefa'])) {
         header('Location: todas_tarefas.php?erro=1');
         exit;
@@ -119,13 +118,12 @@ if ($acao == 'inserir') {
 
     $tarefaService = new TarefaService($conexao, $tarefa);
     if ($tarefaService->update()) {
-        if (isset($_GET['pag']) && $_GET['pag'] == 'index') {
-            header('location: index.php');
-        } else {
-            header('location: todas_tarefas.php');
-        }
+        header('location: todas_tarefas.php');
     }
-} else if ($acao == 'remove') {
+}
+
+// Ação de remover tarefa
+else if ($acao == 'remove') {
     $tarefa = new Tarefa();
     $tarefa->__set('id', $_GET['id']);
 
@@ -133,12 +131,11 @@ if ($acao == 'inserir') {
     $tarefaService = new TarefaService($conexao, $tarefa);
     $tarefaService->remove();
 
-    if (isset($_GET['pag']) && $_GET['pag'] == 'index') {
-        header('location: index.php');
-    } else {
-        header('location: todas_tarefas.php');
-    }
-} else if ($acao == 'marked') {
+    header('location: todas_tarefas.php');
+}
+
+// Ação de marcar tarefa como concluída
+else if ($acao == 'marked') {
     $tarefa = new Tarefa();
     $tarefa->__set('id', $_GET['id'])->__set('id_status', 2);
 
@@ -147,14 +144,14 @@ if ($acao == 'inserir') {
     $tarefaService = new TarefaService($conexao, $tarefa);
     $tarefaService->marked();
 
-    if (isset($_GET['pag']) && $_GET['pag'] == 'index') {
-        header('location: index.php');
-    } else {
-        header('location: todas_tarefas.php');
-    }
-} else if ($acao == 'pendingTasks') {
-    $tarefa = new Tarefa(); 
+    header('location: todas_tarefas.php');
+}
+
+// Ação para recuperar tarefas pendentes de um usuário
+else if ($acao == 'pendingTasks') {
+    $tarefa = new Tarefa();
     $tarefa->__set('id_status', 1);
+    $tarefa->__set('id_usuario', $_SESSION['usuario_id']); // Filtrar tarefas para o usuário logado
     $conexao = new Conexao();
 
     $tarefaService = new TarefaService($conexao, $tarefa);
