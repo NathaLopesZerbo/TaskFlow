@@ -36,14 +36,11 @@
 				<input type="text" name="serch" placeholder="Search" class="bg-white h-10 px-[11rem] pr-80 rounded-xl text-sm focus:outline-none">
 
 				<button type="submit" class="absolute right-0 bottom-2 mt-3 mr-4 cursor-pointer">
-					<i class="fa-solid fa-magnifying-glass"></i>
+					<i class="fa-solid fa-magnifying-glass"></i>asdasd 	
 				</button>
 			</div>
 
-
-
-
-			<a href="#" class="text-white text-2xl">
+			<a href="login.php" class="text-white text-2xl">
 				<i class="fa-solid fa-user"></i>
 			</a>
 		</div>
