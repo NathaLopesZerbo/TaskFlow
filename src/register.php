@@ -25,7 +25,7 @@ $password = $_POST['password'] ?? '';
                 <h1 class="text-2xl font-bold text-center mb-3 font-pessoal cor-tit-auth mr-6">ENTRAR AO TASKFLOW</h1>
 
                 <form class="flex flex-col">
-                    <!-- <input type="text" placeholder="Nome:" class="w-5/6 p-2 mb-3 ml-5 bg-input border rounded-lg placeholder:text-place placeholder:font-extrabold placeholder:text-xs mt-5" /> -->
+                    <input type="text" placeholder="Nome:" class="w-5/6 p-2 mb-3 ml-5 bg-input border rounded-lg placeholder:text-place placeholder:font-extrabold placeholder:text-xs mt-5" />
 
                     <input type="email" placeholder="Email:" class="w-5/6 p-2 mb-3 ml-5 bg-input border rounded-lg placeholder:text-place placeholder:font-extrabold placeholder:text-xs" />
 
@@ -38,8 +38,8 @@ $password = $_POST['password'] ?? '';
 
 
                 <div class="mt-8 ml-20">
-                    <p class="text-xs cor-txt-auth font-bold">
-                        Ainda não possui uma conta? <button class="font-bold cursor-pointer"><a href="register.php">Clique aqui</a></button>
+                    <p class="text-xs cor-txt-auth font-bold ml-5">
+                        Já possui uma conta? <button class="font-bold cursor-pointer"><a href="login.php">Clique aqui</a></button>
                     </p>
                 </div>
             </div>
@@ -53,7 +53,6 @@ $password = $_POST['password'] ?? '';
         </div>
     </div>
 
-    
 
 
     </body>
