@@ -42,7 +42,7 @@ require 'tarefa_controller.php';
 				</button>
 			</div>
 
-			<a href="#" class="text-white text-2xl">
+			<a href="login.php" class="text-white text-2xl">
 				<i class="fa-solid fa-user"></i>
 			</a>
 		</div>
