@@ -58,50 +58,45 @@ require 'tarefa_controller.php';
 					<?php endif; ?>
 
 					<?php foreach ($tarefas as $tarefa) { ?>
-    <div class="flex items-center justify-between bg-white p-4 rounded shadow-sm tarefa" id="tarefa_<?= $tarefa->id ?>">
-        <!-- Exibe a tarefa -->
-        <div class="w-9/12 text-gray-800">
-            <!-- Exibe título e descrição -->
-            <span class="titulo_tarefa"><?= $tarefa->titulo_tarefa ?></span>
-            <span class="descricao_tarefa"><?= $tarefa->tarefa ?></span>
-            
-            <!-- Formulário de edição oculto inicialmente -->
-            <div class="form-editar hidden mt-4">
-                <form method="POST" action="tarefa_controller.php?acao=atualizar">
-                    <input type="hidden" name="id" value="<?= $tarefa->id ?>">
+						<div class="flex items-center justify-between bg-white p-4 rounded shadow-sm tarefa" id="tarefa_<?= $tarefa->id ?>">
+							<div class="w-9/12 text-gray-800">
+								<span class="titulo_tarefa"><?= $tarefa->titulo_tarefa ?></span>
+								<span class="descricao_tarefa"><?= $tarefa->tarefa ?></span>
 
-                    <label for="titulo_tarefa">Título da Tarefa</label>
-                    <input type="text" name="titulo_tarefa" value="<?= $tarefa->titulo_tarefa ?>" required>
+								<div class="form-editar hidden mt-4">
+									<form method="POST" action="tarefa_controller.php?acao=atualizar">
+										<input type="hidden" name="id" value="<?= $tarefa->id ?>">
 
-                    <label for="tarefa">Descrição da Tarefa</label>
-                    <textarea name="tarefa" required><?= $tarefa->tarefa ?></textarea>
+										<label for="titulo_tarefa">Título da Tarefa</label>
+										<input type="text" name="titulo_tarefa" value="<?= $tarefa->titulo_tarefa ?>" required>
 
-                    <button type="submit">Salvar Alterações</button>
-                    <button type="button" class="cancelar-edicao">Cancelar</button>
-                </form>
-            </div>
-        </div>
+										<label for="tarefa">Descrição da Tarefa</label>
+										<textarea name="tarefa" required><?= $tarefa->tarefa ?></textarea>
 
-        <div class="w-3/12 flex items-center justify-end gap-4 mt-1">
-            <!-- Botões de editar, remover e marcar -->
-            <i class="fas fa-edit fa-lg text-blue-500 hover:text-blue-600 cursor-pointer editar-btn"
-                data-id="<?= $tarefa->id ?>"></i>
+										<button type="submit">Salvar Alterações</button>
+										<button type="button" class="cancelar-edicao">Cancelar</button>
+									</form>
+								</div>
+							</div>
 
-            <i class="fas fa-trash-alt fa-lg text-red-500 hover:text-red-600 cursor-pointer"
-                onclick="remove(<?= $tarefa->id ?>)"></i>
+							<div class="w-3/12 flex items-center justify-end gap-4 mt-1">
+								<i class="fas fa-edit fa-lg text-blue-500 hover:text-blue-600 cursor-pointer editar-btn"
+									data-id="<?= $tarefa->id ?>"></i>
 
-            <i class="fas fa-check-square fa-lg text-green-500 hover:text-green-600 cursor-pointer"
-                onclick="marked(<?= $tarefa->id ?>)"></i>
-        </div>
-    </div>
-<?php } ?>
+								<i class="fas fa-trash-alt fa-lg text-red-500 hover:text-red-600 cursor-pointer"
+									onclick="remove(<?= $tarefa->id ?>)"></i>
+
+								<i class="fas fa-check-square fa-lg text-green-500 hover:text-green-600 cursor-pointer"
+									onclick="marked(<?= $tarefa->id ?>)"></i>
+							</div>
+						</div>
+					<?php } ?>
 
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- Feedback por Toastify -->
 	<?php if (isset($_GET['removido']) && $_GET['removido'] == 1): ?>
 		<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
@@ -120,27 +115,26 @@ require 'tarefa_controller.php';
 	<?php endif; ?>
 
 	<script>
-    document.querySelectorAll('.editar-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const tarefaId = btn.getAttribute('data-id');
-            const tarefaDiv = document.getElementById(`tarefa_${tarefaId}`);
-            const formEditar = tarefaDiv.querySelector('.form-editar');
-            formEditar.classList.toggle('hidden'); // Mostra ou esconde o formulário de edição
-            tarefaDiv.querySelector('.titulo_tarefa').classList.toggle('hidden'); // Esconde o título
-            tarefaDiv.querySelector('.descricao_tarefa').classList.toggle('hidden');
-        });
-    });
+		document.querySelectorAll('.editar-btn').forEach(btn => {
+			btn.addEventListener('click', function() {
+				const tarefaId = btn.getAttribute('data-id');
+				const tarefaDiv = document.getElementById(`tarefa_${tarefaId}`);
+				const formEditar = tarefaDiv.querySelector('.form-editar');
+				formEditar.classList.toggle('hidden');
+				tarefaDiv.querySelector('.titulo_tarefa').classList.toggle('hidden');
+				tarefaDiv.querySelector('.descricao_tarefa').classList.toggle('hidden');
+			});
+		});
 
-    // Função para cancelar a edição
-    document.querySelectorAll('.cancelar-edicao').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const tarefaDiv = btn.closest('.tarefa');
-            tarefaDiv.querySelector('.form-editar').classList.add('hidden');
-            tarefaDiv.querySelector('.titulo_tarefa').classList.remove('hidden');
-            tarefaDiv.querySelector('.descricao_tarefa').classList.remove('hidden');
-        });
-    });
-</script>
+		document.querySelectorAll('.cancelar-edicao').forEach(btn => {
+			btn.addEventListener('click', function() {
+				const tarefaDiv = btn.closest('.tarefa');
+				tarefaDiv.querySelector('.form-editar').classList.add('hidden');
+				tarefaDiv.querySelector('.titulo_tarefa').classList.remove('hidden');
+				tarefaDiv.querySelector('.descricao_tarefa').classList.remove('hidden');
+			});
+		});
+	</script>
 
 
 	<script src="../src/js/index.js"></script>

@@ -46,76 +46,71 @@ document.addEventListener('click', (e) => {
     }
 });
 
-
-    document.querySelectorAll('.editar-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const tarefaId = btn.getAttribute('data-id');
-            const tarefaDiv = document.getElementById(`tarefa_${tarefaId}`);
-            const tituloTarefa = tarefaDiv.querySelector('.titulo_tarefa').innerText;
-            const descricaoTarefa = tarefaDiv.querySelector('.descricao_tarefa').innerText;
-
-            edit(tarefaId, tituloTarefa, descricaoTarefa);
-        });
+document.querySelectorAll('.editar-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+        const tarefaId = btn.getAttribute('data-id');
+        const tarefaDiv = document.getElementById(`tarefa_${tarefaId}`);
+        const tituloTarefa = tarefaDiv.querySelector('.titulo_tarefa').innerText;
+        const descricaoTarefa = tarefaDiv.querySelector('.descricao_tarefa').innerText;
+        edit(tarefaId, tituloTarefa, descricaoTarefa);
     });
+});
 
-    function edit(id, txt_titulo, txt_tarefa) {
-      
 
-        let form = document.createElement('form');
-        form.action = 'tarefa_controller.php?acao=atualizar';
-        form.method = 'post';
-        form.className = 'flex p-5';
+function edit(id, txt_titulo, txt_tarefa) {
 
-        let inputTitulo = document.createElement('input');
-        inputTitulo.type = 'text';
-        inputTitulo.name = 'titulo_tarefa';
-        inputTitulo.className = 'w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500';
-        inputTitulo.value = txt_titulo;
+    let form = document.createElement('form');
+    form.action = 'tarefa_controller.php?acao=atualizar';
+    form.method = 'post';
+    form.className = 'flex p-5';
 
-        let inputTarefa = document.createElement('input');
-        inputTarefa.type = 'text';
-        inputTarefa.name = 'tarefa';
-        inputTarefa.className = 'w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500';
-        inputTarefa.value = txt_tarefa;
+    let inputTitulo = document.createElement('input');
+    inputTitulo.type = 'text';
+    inputTitulo.name = 'titulo_tarefa';
+    inputTitulo.className = 'w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500';
+    inputTitulo.value = txt_titulo;
 
-        let inputId = document.createElement('input');
-        inputId.type = 'hidden';
-        inputId.name = 'id';
-        inputId.value = id;
+    let inputTarefa = document.createElement('input');
+    inputTarefa.type = 'text';
+    inputTarefa.name = 'tarefa';
+    inputTarefa.className = 'w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500';
+    inputTarefa.value = txt_tarefa;
 
-        let button = document.createElement('button');
-        button.type = 'submit';
-        button.className = 'bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded';
-        button.innerHTML = 'Atualizar';
+    let inputId = document.createElement('input');
+    inputId.type = 'hidden';
+    inputId.name = 'id';
+    inputId.value = id;
 
-        form.appendChild(inputTitulo);
-        form.appendChild(inputTarefa);
-        form.appendChild(inputId);
-        form.appendChild(button);
+    let button = document.createElement('button');
+    button.type = 'submit';
+    button.className = 'bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded';
+    button.innerHTML = 'Atualizar';
 
-        let tarefa = document.getElementById('tarefa_' + id);
-        tarefa.innerHTML = ''; 
+    form.appendChild(inputTitulo);
+    form.appendChild(inputTarefa);
+    form.appendChild(inputId);
+    form.appendChild(button);
 
-        tarefa.appendChild(form);
-    }
+    let tarefa = document.getElementById('tarefa_' + id);
+    tarefa.innerHTML = '';
 
-    document.querySelectorAll('.cancelar-edicao').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const tarefaDiv = btn.closest('.tarefa');
-            tarefaDiv.querySelector('.form-editar').classList.add('hidden');
-            tarefaDiv.querySelector('.titulo_tarefa').classList.remove('hidden');
-            tarefaDiv.querySelector('.descricao_tarefa').classList.remove('hidden');
-        });
+    tarefa.appendChild(form);
+}
+
+document.querySelectorAll('.cancelar-edicao').forEach(btn => {
+    btn.addEventListener('click', function () {
+        const tarefaDiv = btn.closest('.tarefa');
+        tarefaDiv.querySelector('.form-editar').classList.add('hidden');
+        tarefaDiv.querySelector('.titulo_tarefa').classList.remove('hidden');
+        tarefaDiv.querySelector('.descricao_tarefa').classList.remove('hidden');
     });
+});
 
-    function remove(id) {
-        if (confirm('Tem certeza que deseja remover esta tarefa?')) {
-            window.location.href = 'tarefa_controller.php?acao=remove&id=' + id;
-        }
-    }
+function remove(id) {
+    window.location.href = 'tarefa_controller.php?acao=remove&id=' + id;
+}
 
-    function marked(id) {
-        if (confirm('Marcar esta tarefa como concluída?')) {
-            window.location.href = 'tarefa_controller.php?acao=marked&id=' + id;
-        }
-    }
+function marked(id) {
+    window.location.href = 'tarefa_controller.php?acao=marked&id=' + id;
+}
+
