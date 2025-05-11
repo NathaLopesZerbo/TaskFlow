@@ -98,8 +98,11 @@ require 'tarefa_controller.php';
 				<?php foreach ($tarefas as $tarefa): ?>
 					<div class="flex items-center justify-between bg-white p-4 rounded shadow-sm mb-3">
 						<div class="w-9/12 text-gray-800" id="tarefa_<?= $tarefa->id ?>">
-							<strong><?= htmlspecialchars($tarefa->titulo_tarefa ?? 'Sem título') ?></strong><br>
-							<?= htmlspecialchars($tarefa->tarefa) ?>
+							<strong><?= ($tarefa->titulo_tarefa ?? 'Sem título') ?></strong><br>
+							<?= ($tarefa->tarefa) ?>
+							<div class="text-sm text-gray-500 mt-1">
+								Data cadastrada: <?= date('d/m/Y H:i', strtotime($tarefa->data_cadastrado)) ?>
+							</div>
 						</div>
 						<div class="w-3/12 flex items-center justify-end gap-4">
 							<i class="fas fa-trash-alt text-red-500 hover:text-red-600 cursor-pointer" onclick="remove(<?= $tarefa->id ?>)"></i>

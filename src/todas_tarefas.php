@@ -60,7 +60,6 @@ require 'tarefa_controller.php';
 					<?php foreach ($tarefas as $tarefa) { ?>
 						<div class="flex items-center justify-between bg-white p-4 rounded shadow-sm tarefa" id="tarefa_<?= $tarefa->id ?>">
 							<div class="w-9/12 text-gray-800">
-								<!-- Título em negrito e descrição abaixo -->
 								<div class="titulo_tarefa font-bold"><?= ($tarefa->titulo_tarefa) ?></div>
 								<div class="descricao_tarefa"><?= ($tarefa->tarefa) ?></div>
 
@@ -73,19 +72,13 @@ require 'tarefa_controller.php';
 										<span class="text-gray-500 font-semibold">Status desconhecido</span>
 									<?php endif; ?>
 								</div>
-
-								<!-- Div de edição oculta -->
-								<div class="form-editar hidden mt-4">
-									<div class="titulo_tarefa_editar">
-										<div class="font-bold">Editar Título:</div>
-										<div><?= ($tarefa->titulo_tarefa) ?></div>
-									</div>
-									<div class="descricao_tarefa_editar">
-										<div class="font-bold">Editar Descrição:</div>
-										<div><?= ($tarefa->tarefa) ?></div>
-									</div>
-								</div>
+								<div class="text-sm text-gray-500 mt-1">
+								Data cadastrada: <?= date('d/m/Y H:i', strtotime($tarefa->data_cadastrado)) ?>
 							</div>
+						</div>
+
+							
+
 
 							<div class="w-3/12 flex items-center justify-end gap-4 mt-1">
 								<i class="fas fa-edit fa-lg text-blue-500 hover:text-blue-600 cursor-pointer editar-btn"
