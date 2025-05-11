@@ -1,3 +1,6 @@
+<?php 
+session_start(); 
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -42,7 +45,11 @@
 			</div>
 
 			<a href="login.php" class="text-white text-2xl">
-				<i class="fa-solid fa-user"></i>
+				<?php if (isset($_SESSION['usuario'])): ?>
+					<span>Olá, <?php echo $_SESSION['usuario']; ?></span> 
+				<?php else: ?>
+					<i class="fa-solid fa-user"></i> 
+				<?php endif; ?>
 			</a>
 		</div>
 	</nav>

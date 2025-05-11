@@ -1,7 +1,11 @@
 <?php
 $acao = 'pendingTasks';
 require 'tarefa_controller.php';
+
+session_start(); 
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -44,15 +48,20 @@ require 'tarefa_controller.php';
 			</div>
 
 			<a href="login.php" class="text-white text-2xl">
-				<i class="fa-solid fa-user"></i>
+				<?php if (isset($_SESSION['usuario'])): ?>
+					<span>Olá, <?php echo $_SESSION['usuario']; ?></span> 
+				<?php else: ?>
+					<i class="fa-solid fa-user"></i> 
+				<?php endif; ?>
 			</a>
+
 		</div>
 	</nav>
 
 	<!-- Toastify mensagens -->
 	<?php if (isset($_GET['erro']) && $_GET['erro'] == 1): ?>
 		<script>
-			document.addEventListener("DOMContentLoaded", function () {
+			document.addEventListener("DOMContentLoaded", function() {
 				Toastify({
 					text: "Campo Vazio",
 					duration: 3000,
@@ -70,7 +79,7 @@ require 'tarefa_controller.php';
 
 	<?php if (isset($_GET['inclusao']) && $_GET['inclusao'] == 1): ?>
 		<script>
-			document.addEventListener("DOMContentLoaded", function () {
+			document.addEventListener("DOMContentLoaded", function() {
 				Toastify({
 					text: "Tarefa inserida com sucesso!",
 					duration: 3000,

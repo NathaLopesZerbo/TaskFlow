@@ -1,4 +1,5 @@
 <?php
+session_start(); 
 $acao = 'recuperar';
 require 'tarefa_controller.php';
 ?>
@@ -11,7 +12,6 @@ require 'tarefa_controller.php';
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="css/build.css">
-	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 	<title>TaskFlow</title>
 </head>
 
@@ -42,7 +42,11 @@ require 'tarefa_controller.php';
 			</div>
 
 			<a href="login.php" class="text-white text-2xl">
-				<i class="fa-solid fa-user"></i>
+				<?php if (isset($_SESSION['usuario'])): ?>
+					<span>Olá, <?php echo $_SESSION['usuario']; ?></span> 
+				<?php else: ?>
+					<i class="fa-solid fa-user"></i> 
+				<?php endif; ?>
 			</a>
 		</div>
 	</nav>
