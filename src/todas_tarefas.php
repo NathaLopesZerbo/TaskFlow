@@ -60,22 +60,30 @@ require 'tarefa_controller.php';
 					<?php foreach ($tarefas as $tarefa) { ?>
 						<div class="flex items-center justify-between bg-white p-4 rounded shadow-sm tarefa" id="tarefa_<?= $tarefa->id ?>">
 							<div class="w-9/12 text-gray-800">
-								<span class="titulo_tarefa"><?= $tarefa->titulo_tarefa ?></span>
-								<span class="descricao_tarefa"><?= $tarefa->tarefa ?></span>
+								<!-- Título em negrito e descrição abaixo -->
+								<div class="titulo_tarefa font-bold"><?= ($tarefa->titulo_tarefa) ?></div>
+								<div class="descricao_tarefa"><?= ($tarefa->tarefa) ?></div>
 
+								<div class="status_tarefa mt-2">
+									<?php if ($tarefa->status == 'pendente'): ?>
+										<span class="text-yellow-500 font-semibold">Pendente</span>
+									<?php elseif ($tarefa->status == 'realizado'): ?>
+										<span class="text-green-500 font-semibold">Realizado</span>
+									<?php else: ?>
+										<span class="text-gray-500 font-semibold">Status desconhecido</span>
+									<?php endif; ?>
+								</div>
+
+								<!-- Div de edição oculta -->
 								<div class="form-editar hidden mt-4">
-									<form method="POST" action="tarefa_controller.php?acao=atualizar">
-										<input type="hidden" name="id" value="<?= $tarefa->id ?>">
-
-										<label for="titulo_tarefa">Título da Tarefa</label>
-										<input type="text" name="titulo_tarefa" value="<?= $tarefa->titulo_tarefa ?>" required>
-
-										<label for="tarefa">Descrição da Tarefa</label>
-										<textarea name="tarefa" required><?= $tarefa->tarefa ?></textarea>
-
-										<button type="submit">Salvar Alterações</button>
-										<button type="button" class="cancelar-edicao">Cancelar</button>
-									</form>
+									<div class="titulo_tarefa_editar">
+										<div class="font-bold">Editar Título:</div>
+										<div><?= ($tarefa->titulo_tarefa) ?></div>
+									</div>
+									<div class="descricao_tarefa_editar">
+										<div class="font-bold">Editar Descrição:</div>
+										<div><?= ($tarefa->tarefa) ?></div>
+									</div>
 								</div>
 							</div>
 
@@ -91,6 +99,7 @@ require 'tarefa_controller.php';
 							</div>
 						</div>
 					<?php } ?>
+
 
 				</div>
 			</div>
