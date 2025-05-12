@@ -59,6 +59,6 @@ Certifique-se de ter os seguintes itens instalados:
 2. **Mova a pasta do projeto** para o diretório de projetos do XAMPP:
 
    ```bash
-   C:\xampp\htdocs\projeto-taskflow
+   C:\xampp\htdocs\taskflow
 
 
