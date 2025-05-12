@@ -160,7 +160,7 @@ require 'tarefa_controller.php';
 			</div>
 		</div>
 	</div>
-				</div>
+</div>
 				
 
 	<script src="../src/js/index.js" defer></script>
