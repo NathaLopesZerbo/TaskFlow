@@ -9,7 +9,6 @@ session_destroy();
 
 <head>
     <meta charset="UTF-8">
-    <title>Saindo...</title>
     <script>
         localStorage.clear();
 
