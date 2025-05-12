@@ -8,7 +8,15 @@ const options = [
     { label: "Todas Tarefas", url: "../src/todas_tarefas.php" }
 ];
 
-let currentLabel = localStorage.getItem('selectedLabel') || "Todas Tarefas";
+
+if (window.location.pathname.includes('login.php')) {
+    localStorage.removeItem('selectedLabel'); 
+}
+
+
+let currentLabel = localStorage.getItem('selectedLabel') || "Nova Tarefa";
+
+
 selected.textContent = currentLabel;
 
 function renderMenu(excludeLabel) {
@@ -22,6 +30,7 @@ function renderMenu(excludeLabel) {
 
             a.addEventListener('click', (e) => {
                 e.preventDefault();
+                // Salvar a seleção do filtro no localStorage
                 localStorage.setItem('selectedLabel', option.label);
                 selected.textContent = option.label;
                 renderMenu(option.label);
@@ -45,6 +54,25 @@ document.addEventListener('click', (e) => {
         menu.classList.add('hidden');
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+	const dropdown = document.getElementById('dropdown');
+	const container = document.getElementById('user-dropdown');
+	let hideTimeout;
+
+	container.addEventListener('mouseenter', () => {
+		clearTimeout(hideTimeout);
+		dropdown.classList.remove('hidden');
+	});
+
+	container.addEventListener('mouseleave', () => {
+		hideTimeout = setTimeout(() => {
+			dropdown.classList.add('hidden');
+		}, 100);
+	});
+});
+
+
 
 document.querySelectorAll('.editar-btn').forEach(btn => {
     btn.addEventListener('click', function () {

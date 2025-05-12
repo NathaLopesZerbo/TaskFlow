@@ -1,8 +1,8 @@
 <?php
 session_start();
 if (!isset($_SESSION['usuario_id'])) {
-    header('Location: login.php');
-    exit;
+	header('Location: login.php');
+	exit;
 }
 
 ?>
@@ -23,42 +23,55 @@ if (!isset($_SESSION['usuario_id'])) {
 
 <body class="bg-fundo">
 	<nav class="bg-principal p-4">
-		<div class="container mx-auto flex items-center justify-between">
-			<div>
+		<div class="flex justify-around">
+
+			<div class="flex items-center">
 				<a href="nova_tarefa.php" class="flex items-center text-lg font-semibold">
 					<img src="img/logo_task_flow.png" width="30" height="30" alt="Logo">
 					<h1 class="text-white text-2xl pb-1">TaskFlow</h1>
 				</a>
 			</div>
 
-			<div class="relative text-gray-600">
-				<div class="absolute flex flex-col">
+			<div class="block lg:hidden">
+				<button id="nav-toggle" class="text-white focus:outline-none">
+					<i class="fa-solid fa-bars text-2xl"></i>
+				</button>
+			</div>
+
+			<div class="relative text-gray-600 w-full lg:w-auto flex justify-center lg:justify-start">
+				<div class="absolute flex flex-col z-10">
 					<button id="dropdownButton" class="border-x text-sm border-gray-300 text-gray-600 h-10 px-4 bg-white hover:border-gray-400 focus:outline-none flex items-center justify-between rounded-tl-xl rounded-bl-xl w-40 overflow-hidden truncate whitespace-nowrap">
-						<span id="selectedOption" class="cursor-pointer">
-							Tarefas
-						</span>
+						<span id="selectedOption" class="cursor-pointer">Tarefas</span>
 						<i class="fa-solid fa-caret-down"></i>
 					</button>
-
 					<div id="dropdownMenu" class="mt-1 w-full bg-white border border-gray-300 rounded-md shadow-md hidden"></div>
 				</div>
 
-				<input type="text" name="serch" placeholder="Search" class="bg-white h-10 px-[11rem] pr-80 rounded-xl text-sm focus:outline-none">
-
+				<input type="text" name="search" placeholder="Search" class="bg-white h-10 px-[11rem] pr-80 rounded-xl text-sm focus:outline-none w-full lg:w-auto">
 				<button type="submit" class="absolute right-0 bottom-2 mt-3 mr-4 cursor-pointer">
 					<i class="fa-solid fa-magnifying-glass"></i>
 				</button>
 			</div>
 
-			<a href="login.php" class="text-white text-2xl">
-				<?php if (isset($_SESSION['usuario'])): ?>
-					<span>Olá, <?php echo $_SESSION['usuario']; ?></span> 
-					<a href="logout.php" class="ml-4 text-red-500 hover:text-red-700">Sair</a> 
-				<?php else: ?>
-					<i class="fa-solid fa-user"></i> 
-				<?php endif; ?>
-			</a>
 
+			<div id="nav-content" class="w-full lg:w-auto mt-4 lg:mt-0 hidden lg:flex items-center justify-between flex-col lg:flex-row gap-4 lg:gap-0">
+
+				<div class="relative inline-block" id="user-dropdown">
+					<?php if (isset($_SESSION['usuario'])): ?>
+						<span class="text-white text-lg font-medium cursor-pointer">
+							Olá, <?php echo $_SESSION['usuario']; ?>
+						</span>
+
+						<div id="dropdown" class="absolute right-0 mt-2 w-32 bg-white rounded-b-xl shadow-lg z-50 hidden">
+							<a href="logout.php" class="block px-4 py-2 text-red-500 hover:text-red-800 hover:bg-gray-200 rounded-b-xl">Sair</a>
+						</div>
+					<?php else: ?>
+						<a href="login.php" class="text-white text-2xl">
+							<i class="fa-solid fa-user"></i>
+						</a>
+					<?php endif; ?>
+				</div>
+			</div>
 		</div>
 	</nav>
 

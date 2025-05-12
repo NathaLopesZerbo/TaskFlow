@@ -6,6 +6,6 @@
   },
   "scripts": {
     "tailwind": "npx tailwindcss -i src/css/style.css -o src/css/build.css --watch",
-    "watch": "browser-sync start --proxy localhost/projeto-lista-de-tarefas/src --files 'src/**/*.php, src/css/build.css'"
+     "watch": "browser-sync start --proxy localhost/projeto-lista-de-tarefas/src --files 'src/**/*.php, src/css/build.css'"
   }
 }

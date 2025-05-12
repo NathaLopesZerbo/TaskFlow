@@ -14,28 +14,36 @@ class TarefaService
   }
 
   // Create
-  public function insert()
-  {
-    $query = 'insert into tb_tarefas(tarefa, titulo_tarefa)values(:tarefa, :titulo_tarefa)';
-    $stmt = $this->conexao->prepare($query);
-    $stmt->bindValue(':tarefa', $this->tarefa->__get('tarefa'));
-    $stmt->bindValue(':titulo_tarefa', $this->tarefa->__get('titulo_tarefa'));
-    return $stmt->execute();
-  }
+ public function insert()
+{
+  $query = 'INSERT INTO tb_tarefas(tarefa, titulo_tarefa, id_usuario) VALUES(:tarefa, :titulo_tarefa, :id_usuario)';
+  $stmt = $this->conexao->prepare($query);
+  $stmt->bindValue(':tarefa', $this->tarefa->__get('tarefa'));
+  $stmt->bindValue(':titulo_tarefa', $this->tarefa->__get('titulo_tarefa'));
+  $stmt->bindValue(':id_usuario', $this->tarefa->__get('id_usuario')); // nova linha
+  return $stmt->execute();
+}
+
 
   //Read
-  public function recover()
-  {
-    $query = '
-      select 
-        t.id, s.status, t.tarefa, t.data_cadastrado, t.titulo_tarefa
-      from 
-        tb_tarefas as t
-        left join tb_status as s on (t.id_status = s.id)';
-    $stmt = $this->conexao->prepare($query);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_OBJ);
-  }
+public function recover()
+{
+  $query = '
+    SELECT 
+      t.id, s.status, t.tarefa, t.data_cadastrado, t.titulo_tarefa
+    FROM 
+      tb_tarefas AS t
+    LEFT JOIN 
+      tb_status AS s ON (t.id_status = s.id)
+    WHERE
+      t.id_usuario = :id_usuario
+  ';
+  $stmt = $this->conexao->prepare($query);
+  $stmt->bindValue(':id_usuario', $this->tarefa->__get('id_usuario'));
+  $stmt->execute();
+  return $stmt->fetchAll(PDO::FETCH_OBJ);
+}
+
 
   //Update
   public function update(){
@@ -66,7 +74,7 @@ class TarefaService
   }
 
   public function pendingTasks()
-  {
+{
     $query = '
       select 
         t.id, s.status, t.tarefa, t.data_cadastrado, t.titulo_tarefa
@@ -75,10 +83,13 @@ class TarefaService
         left join tb_status as s on (t.id_status = s.id)
       where
         t.id_status = :id_status
-        ';
+        and t.id_usuario = :id_usuario
+    ';
     $stmt = $this->conexao->prepare($query);
     $stmt->bindValue(':id_status', $this->tarefa->__get('id_status'));
+    $stmt->bindValue(':id_usuario', $this->tarefa->__get('id_usuario'));
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_OBJ);
-  }
+}
+
 }
