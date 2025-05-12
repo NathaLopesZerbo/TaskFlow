@@ -164,6 +164,7 @@ require 'tarefa_controller.php';
 				
 
 	<script src="../src/js/index.js" defer></script>
+	
 </body>
 
 </html>

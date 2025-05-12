@@ -141,6 +141,7 @@ if (!isset($_SESSION['usuario_id'])) {
 
 
 	<script src="../src/js/index.js"></script>
+	
 </body>
 
 </html>
