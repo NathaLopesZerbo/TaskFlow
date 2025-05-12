@@ -60,13 +60,15 @@ Para executar o projeto localmente em seu ambiente de desenvolvimento, siga os p
      http://localhost/taskflow/src
      ```
 
-Esse processo irá garantir que o projeto esteja configurado corretamente no seu servidor local (XAMPP) e você possa visualizá-lo no seu navegador.
-
-3. **Acesso imediato**:
+  4. **Acesso imediato**:
    - Hospedado em InfinityFree:
      ```
      http://taskflow.kesug.com 
      ```
+
+
+  
+
 
 
 
