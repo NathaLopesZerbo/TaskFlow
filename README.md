@@ -23,52 +23,47 @@
 
 ---
 
-## 🚀 Funcionalidade
+## 🚀 Funcionalidades
 
-O **TaskFlow** é uma aplicação voltada para o gerenciamento de tarefas. Permite:
-- ✅ Criar tarefas com título e descrição
-- 🖊️ Editar tarefas existentes
-- ❌ Excluir tarefas concluídas ou desnecessárias
-- 📋 Visualizar tarefas pendentes e concluídas separadamente
+O **TaskFlow** é uma aplicação web desenvolvida para o gerenciamento eficiente de tarefas. Suas principais funcionalidades incluem:
+
+- ✅ **Criação de Tarefas:** Permite adicionar novas tarefas com título e descrição detalhada.
+- 🖊️ **Edição de Tarefas:** Possibilidade de modificar tarefas existentes para atualizar informações.
+- ❌ **Exclusão de Tarefas:** Facilidade para remover tarefas concluídas ou que não são mais necessárias.
+- 📋 **Visualização Organizada:** Apresenta as tarefas pendentes e concluídas em seções separadas para melhor organização.
 
 ---
 
 ## 🖥️ Executando Localmente
 
-Para executar o projeto localmente em seu ambiente de desenvolvimento, siga os passos abaixo:
+Para executar o **TaskFlow** em seu ambiente de desenvolvimento local, siga estas etapas:
 
-1. **Clone o repositório via Git** ou **faça o download manualmente**:
-   
-   - **Git**:
+1. **Obtenha o código do projeto:**
+
+   - **Via Git (recomendado):**
+     ```bash
+     git clone [https://github.com/NathaLopesZerbo/TaskFlow.git](https://github.com/NathaLopesZerbo/TaskFlow.git)
      ```
-     git clone https://github.com/NathaLopesZerbo/TaskFlow.git
-     ```
 
-   - **Download Manual**:
-     - Clique em "Code" no repositório GitHub e selecione "Download ZIP".
-     - Ao fazer o download em formato `.zip`, o nome da pasta será `TaskFlow-main`.
-     - **Renomeie a pasta** para `taskflow`.
+   - **Download manual:**
+     - Acesse a página do repositório no GitHub e clique em "Code" > "Download ZIP".
+     - Após o download, extraia o arquivo `.zip`. A pasta extraída terá o nome `TaskFlow-main`.
+     - **Renomeie a pasta** extraída para `taskflow`.
 
-2. **Mova a pasta do projeto para o diretório de projetos do XAMPP**:
-   - Se você usou o Git, a pasta já estará com o nome `taskflow`, mas se você fez o download em `.zip`, será necessário renomeá-la para `taskflow`.
-   - Mova a pasta `taskflow` para o diretório `htdocs` do XAMPP:
-     - **C:\xampp\htdocs\taskflow**
+2. **Mova a pasta do projeto para o diretório do XAMPP:**
 
-3. **Acesse o projeto localmente**:
-   - Após mover a pasta, abra o navegador e acesse o endereço:
+   - Certifique-se de que o XAMPP esteja instalado e em execução.
+   - Mova a pasta `taskflow` para dentro do diretório `htdocs` do XAMPP. O caminho típico é: `C:\xampp\htdocs\taskflow`.
+
+3. **Acesse a aplicação no navegador:**
+
+   - Abra seu navegador web e acesse o seguinte endereço:
      ```
      http://localhost/taskflow/src
      ```
 
-      4. **Acesso imediato**:
-       - Hospedado em InfinityFree:
-         ```
-         http://taskflow.kesug.com 
-         ```
+---
 
+## 🔗 Acesso Online
 
-  
-
-
-
-
+Para visualizar o **TaskFlow** em execução, você pode acessar a seguinte URL (hospedado em InfinityFree):
