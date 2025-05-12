@@ -33,7 +33,7 @@ O **TaskFlow** é uma aplicação voltada para o gerenciamento de tarefas. Permi
 
 ---
 
-## 🚀 Executando Localmente
+## 🖥️ Executando Localmente
 
 Para executar o projeto localmente em seu ambiente de desenvolvimento, siga os passos abaixo:
 
