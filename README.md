@@ -35,17 +35,30 @@ O **TaskFlow** é uma aplicação voltada para o gerenciamento de tarefas. Permi
 
 ## 🚀 Executar Localmente
 
-Para executar o **TaskFlow** localmente, siga os passos abaixo:
+Siga os passos abaixo para rodar o projeto **TaskFlow** no seu ambiente local.
 
-### 1. Pré-requisitos
+### ⚙️ Pré-requisitos
 
-- Ter o **XAMPP** instalado (ou outro servidor com Apache + MySQL + PHP).
-- Clonar ou baixar o projeto em `.zip`.
+Certifique-se de ter os seguintes itens instalados:
 
-### 2. Instalar o projeto
+- [XAMPP](https://www.apachefriends.org/pt_br/index.html) ou outro servidor com **Apache**, **PHP** e **MySQL**.
+- Navegador de internet (Google Chrome, Firefox etc).
 
-- Extraia ou mova a pasta do projeto para o diretório do XAMPP:
+---
 
-```bash
-C:\xampp\htdocs\projeto-taskflow
+### 📁 Instalação do Projeto
+
+1. **Clone ou baixe** o repositório deste projeto:
+
+   - Se estiver no GitHub:
+     ```bash
+     git clone https://github.com/seu-usuario/projeto-taskflow.git
+     ```
+   - Ou faça o download em `.zip` e extraia.
+
+2. **Mova a pasta do projeto** para o diretório de projetos do XAMPP:
+
+   ```bash
+   C:\xampp\htdocs\projeto-taskflow
+
 
