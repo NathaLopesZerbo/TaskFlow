@@ -148,6 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.marked = function (id) {
-        window.location.href = 'tarefa_controller.php?acao=marked&id=' + id;
-    };
+    localStorage.setItem('selectedLabel', 'Todas Tarefas');
+    window.location.href = 'tarefa_controller.php?acao=marked&id=' + id;
+};
+
 });
