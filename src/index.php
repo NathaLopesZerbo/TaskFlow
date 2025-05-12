@@ -62,7 +62,7 @@ require 'tarefa_controller.php';
       </button>
     </div>
 
-    <!-- Área do usuário (mostrada apenas se nav aberto no mobile ou direto no desktop) -->
+
     <div id="nav-content" class="w-full lg:w-auto hidden lg:flex justify-center mt-4 lg:mt-0">
       <div class="relative inline-block" id="user-dropdown">
         <?php if (isset($_SESSION['usuario'])): ?>
@@ -84,6 +84,14 @@ require 'tarefa_controller.php';
 </nav>
 
 
+<script>
+  const toggle = document.getElementById("nav-toggle");
+  const navContent = document.getElementById("nav-content");
+
+  toggle.addEventListener("click", () => {
+    navContent.classList.toggle("hidden");
+  });
+</script>
 
 
 

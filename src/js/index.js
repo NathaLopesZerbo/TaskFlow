@@ -30,7 +30,7 @@ function renderMenu(excludeLabel) {
 
             a.addEventListener('click', (e) => {
                 e.preventDefault();
-                
+                // Salvar a seleção do filtro no localStorage
                 localStorage.setItem('selectedLabel', option.label);
                 selected.textContent = option.label;
                 renderMenu(option.label);
@@ -70,15 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			dropdown.classList.add('hidden');
 		}, 100);
 	});
-    
 });
-
-    const toggle = document.getElementById("nav-toggle");
-	const navContent = document.getElementById("nav-content");
-
-		toggle.addEventListener("click", () => {
-			navContent.classList.toggle("hidden");
-		});
 
 
 
@@ -92,9 +84,7 @@ document.querySelectorAll('.editar-btn').forEach(btn => {
     });
 });
 
-
 function edit(id, txt_titulo, txt_tarefa) {
-
     let form = document.createElement('form');
     form.action = 'tarefa_controller.php?acao=atualizar';
     form.method = 'post';
@@ -117,6 +107,12 @@ function edit(id, txt_titulo, txt_tarefa) {
     inputId.name = 'id';
     inputId.value = id;
 
+    // ✅ Adicione este campo para informar a página de origem
+    let inputPagina = document.createElement('input');
+    inputPagina.type = 'hidden';
+    inputPagina.name = 'pagina_origem';
+    inputPagina.value = window.location.pathname.split('/').pop(); // Ex: 'index.php' ou 'todas_tarefas.php'
+
     let button = document.createElement('button');
     button.type = 'submit';
     button.className = 'bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded';
@@ -125,22 +121,16 @@ function edit(id, txt_titulo, txt_tarefa) {
     form.appendChild(inputTitulo);
     form.appendChild(inputTarefa);
     form.appendChild(inputId);
+    form.appendChild(inputPagina); 
     form.appendChild(button);
 
     let tarefa = document.getElementById('tarefa_' + id);
     tarefa.innerHTML = '';
-
     tarefa.appendChild(form);
 }
 
-document.querySelectorAll('.cancelar-edicao').forEach(btn => {
-    btn.addEventListener('click', function () {
-        const tarefaDiv = btn.closest('.tarefa');
-        tarefaDiv.querySelector('.form-editar').classList.add('hidden');
-        tarefaDiv.querySelector('.titulo_tarefa').classList.remove('hidden');
-        tarefaDiv.querySelector('.descricao_tarefa').classList.remove('hidden');
-    });
-});
+
+
 
 function remove(id) {
     window.location.href = 'tarefa_controller.php?acao=remove&id=' + id;
