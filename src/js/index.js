@@ -1,3 +1,10 @@
+ const toggle = document.getElementById("nav-toggle");
+    const navContent = document.getElementById("nav-content");
+
+  toggle.addEventListener("click", () => {
+    navContent.classList.toggle("hidden");
+  });
+
 const button = document.getElementById('dropdownButton');
 const menu = document.getElementById('dropdownMenu');
 const selected = document.getElementById('selectedOption');

@@ -95,14 +95,7 @@ require 'tarefa_controller.php';
 	</nav>
 
 
-<script>
-  const toggle = document.getElementById("nav-toggle");
-  const navContent = document.getElementById("nav-content");
 
-  toggle.addEventListener("click", () => {
-    navContent.classList.toggle("hidden");
-  });
-</script>
 
 
 
