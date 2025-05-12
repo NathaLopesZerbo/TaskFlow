@@ -56,21 +56,36 @@ document.addEventListener('click', (e) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+	const toggle = document.getElementById("nav-toggle");
+	const navContent = document.getElementById("nav-content");
+
+	if (toggle && navContent) {
+		toggle.addEventListener("click", () => {
+			navContent.classList.toggle("hidden");
+		});
+	}
+
+	// Dropdown de usuário (setinha e sair)
 	const dropdown = document.getElementById('dropdown');
 	const container = document.getElementById('user-dropdown');
 	let hideTimeout;
 
-	container.addEventListener('mouseenter', () => {
-		clearTimeout(hideTimeout);
-		dropdown.classList.remove('hidden');
-	});
+	if (dropdown && container) {
+		container.addEventListener('mouseenter', () => {
+			clearTimeout(hideTimeout);
+			dropdown.classList.remove('hidden');
+		});
 
-	container.addEventListener('mouseleave', () => {
-		hideTimeout = setTimeout(() => {
-			dropdown.classList.add('hidden');
-		}, 100);
-	});
+		container.addEventListener('mouseleave', () => {
+			hideTimeout = setTimeout(() => {
+				dropdown.classList.add('hidden');
+			}, 100);
+		});
+	}
 });
+
+
+    
 
 
 
