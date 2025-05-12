@@ -1,7 +1,7 @@
 # ✅ TaskFlow
 
 <div align="center">
-  <img src="./src/img/taskflow-readme.png" alt="TaskFlow Logo" height="150"/>
+  <img src="./src/img/taskflow-readme" alt="TaskFlow Logo" height="150"/>
 </div>
 
 <div align="center">
