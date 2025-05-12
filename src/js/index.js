@@ -37,7 +37,6 @@ function renderMenu(excludeLabel) {
 
             a.addEventListener('click', (e) => {
                 e.preventDefault();
-                // Salvar a seleção do filtro no localStorage
                 localStorage.setItem('selectedLabel', option.label);
                 selected.textContent = option.label;
                 renderMenu(option.label);
