@@ -42,7 +42,7 @@ Para executar o **TaskFlow** em seu ambiente de desenvolvimento local, siga esta
 
    - **Via Git (recomendado):**
      ```bash
-     git clone [https://github.com/NathaLopesZerbo/TaskFlow.git](https://github.com/NathaLopesZerbo/TaskFlow.git)
+     git clone https://github.com/NathaLopesZerbo/TaskFlow.git 
      ```
 
    - **Download manual:**
