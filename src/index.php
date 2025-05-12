@@ -56,10 +56,12 @@ require 'tarefa_controller.php';
 					<div id="dropdownMenu" class="mt-1 w-full bg-white border border-gray-300 rounded-md shadow-md hidden"></div>
 				</div>
 
-				<input type="text" name="search" placeholder="Search" class="bg-white h-10 px-[11rem]  rounded-xl text-sm focus:outline-none w-full lg:w-auto">
-				<button type="submit" class="absolute right-0 bottom-2 mt-3 mr-4 cursor-pointer">
-					<i class="fa-solid fa-magnifying-glass"></i>
-				</button>
+		<input type="text" id="search" name="search" placeholder="Search" class="bg-white h-10 px-[11rem] rounded-xl text-sm focus:outline-none w-full lg:w-auto">
+<button type="button" id="searchBtn" class="absolute right-0 bottom-2 mt-3 mr-4 cursor-pointer">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+
+
 			</div>
 
 			

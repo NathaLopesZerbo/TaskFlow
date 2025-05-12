@@ -1,9 +1,9 @@
- const toggle = document.getElementById("nav-toggle");
-    const navContent = document.getElementById("nav-content");
+const toggle = document.getElementById("nav-toggle");
+const navContent = document.getElementById("nav-content");
 
-  toggle.addEventListener("click", () => {
+toggle.addEventListener("click", () => {
     navContent.classList.toggle("hidden");
-  });
+});
 
 const button = document.getElementById('dropdownButton');
 const menu = document.getElementById('dropdownMenu');
@@ -17,7 +17,7 @@ const options = [
 
 
 if (window.location.pathname.includes('login.php')) {
-    localStorage.removeItem('selectedLabel'); 
+    localStorage.removeItem('selectedLabel');
 }
 
 
@@ -63,20 +63,20 @@ document.addEventListener('click', (e) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-	const dropdown = document.getElementById('dropdown');
-	const container = document.getElementById('user-dropdown');
-	let hideTimeout;
+    const dropdown = document.getElementById('dropdown');
+    const container = document.getElementById('user-dropdown');
+    let hideTimeout;
 
-	container.addEventListener('mouseenter', () => {
-		clearTimeout(hideTimeout);
-		dropdown.classList.remove('hidden');
-	});
+    container.addEventListener('mouseenter', () => {
+        clearTimeout(hideTimeout);
+        dropdown.classList.remove('hidden');
+    });
 
-	container.addEventListener('mouseleave', () => {
-		hideTimeout = setTimeout(() => {
-			dropdown.classList.add('hidden');
-		}, 100);
-	});
+    container.addEventListener('mouseleave', () => {
+        hideTimeout = setTimeout(() => {
+            dropdown.classList.add('hidden');
+        }, 100);
+    });
 });
 
 
@@ -114,11 +114,11 @@ function edit(id, txt_titulo, txt_tarefa) {
     inputId.name = 'id';
     inputId.value = id;
 
-    // ✅ Adicione este campo para informar a página de origem
+ 
     let inputPagina = document.createElement('input');
     inputPagina.type = 'hidden';
     inputPagina.name = 'pagina_origem';
-    inputPagina.value = window.location.pathname.split('/').pop(); // Ex: 'index.php' ou 'todas_tarefas.php'
+    inputPagina.value = window.location.pathname.split('/').pop(); 
 
     let button = document.createElement('button');
     button.type = 'submit';
@@ -128,7 +128,7 @@ function edit(id, txt_titulo, txt_tarefa) {
     form.appendChild(inputTitulo);
     form.appendChild(inputTarefa);
     form.appendChild(inputId);
-    form.appendChild(inputPagina); 
+    form.appendChild(inputPagina);
     form.appendChild(button);
 
     let tarefa = document.getElementById('tarefa_' + id);
