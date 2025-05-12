@@ -33,21 +33,19 @@ O **TaskFlow** é uma aplicação voltada para o gerenciamento de tarefas. Permi
 
 ---
 
-## 💻 Como Executar Localmente
+## 🚀 Executar Localmente
 
-### 1. Requisitos:
-- XAMPP ou outro servidor com suporte a PHP e MySQL
+Para executar o **TaskFlow** localmente, siga os passos abaixo:
 
-### 2. Passos:
+### 1. Pré-requisitos
+
+- Ter o **XAMPP** instalado (ou outro servidor com Apache + MySQL + PHP).
+- Clonar ou baixar o projeto em `.zip`.
+
+### 2. Instalar o projeto
+
+- Extraia ou mova a pasta do projeto para o diretório do XAMPP:
 
 ```bash
-1. Clone ou baixe este repositório
-2. Copie a pasta do projeto para:
-   C:\xampp\htdocs\projeto-lista-de-tarefas
-3. Inicie o Apache e MySQL no XAMPP
-4. Crie o banco de dados:
-   - Acesse http://localhost/phpmyadmin
-   - Crie um banco com o nome correspondente ao seu arquivo de conexão
-   - Importe o arquivo .sql fornecido
-5. Acesse no navegador:
-   http://localhost/projeto-lista-de-tarefas/src/
+C:\xampp\htdocs\projeto-taskflow
+
