@@ -48,7 +48,7 @@ if ($acao === 'login') {
     }
 }
 
-// Ação de registro
+
 if ($acao === 'register') {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nome = $_POST['nome'];
@@ -72,7 +72,7 @@ if ($acao === 'register') {
     }
 }
 
-// Inserir tarefa
+
 if ($acao == 'inserir') {
     if (empty($_POST['tarefa']) || empty($_POST['titulo_tarefa'])) {
         header('Location: nova_tarefa.php?erro=1');
@@ -91,7 +91,7 @@ if ($acao == 'inserir') {
     header('Location: nova_tarefa.php?inclusao=1');
 }
 
-// Recuperar tarefas
+
 else if ($acao == 'recuperar') {
     $tarefa = new Tarefa();
     $tarefa->__set('id_usuario', $_SESSION['usuario_id']);
@@ -101,7 +101,7 @@ else if ($acao == 'recuperar') {
     $tarefas = $tarefaService->recover();
 }
 
-// Atualizar tarefa
+
 else if ($acao == 'atualizar') {
     if (empty($_POST['tarefa']) || empty($_POST['titulo_tarefa'])) {
         header('Location: todas_tarefas.php?erro=1');
@@ -125,7 +125,7 @@ if ($tarefaService->update()) {
 
 }
 
-// Remover tarefa
+
 else if ($acao == 'remove') {
     $tarefa = new Tarefa();
     $tarefa->__set('id', $_GET['id']);
@@ -137,7 +137,7 @@ else if ($acao == 'remove') {
     header('location: todas_tarefas.php');
 }
 
-// Marcar tarefa como concluída
+
 else if ($acao == 'marked') {
     $tarefa = new Tarefa();
     $tarefa->__set('id', $_GET['id'])->__set('id_status', 2);
@@ -149,7 +149,7 @@ else if ($acao == 'marked') {
     header('location: todas_tarefas.php');
 }
 
-// Recuperar tarefas pendentes
+
 else if ($acao == 'pendingTasks') {
     $tarefa = new Tarefa();
     $tarefa->__set('id_status', 1)

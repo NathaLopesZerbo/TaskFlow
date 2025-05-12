@@ -28,10 +28,10 @@ require 'tarefa_controller.php';
 
 <body>
 
-<nav class="bg-principal p-4">
+	<nav class="bg-principal p-4">
 		<div class="flex flex-wrap items-center justify-between lg:justify-around">
 
-			
+
 			<div class="flex items-center">
 				<a href="nova_tarefa.php" class="flex items-center text-lg font-semibold">
 					<img src="img/logo_task_flow.png" width="30" height="30" alt="Logo">
@@ -39,14 +39,14 @@ require 'tarefa_controller.php';
 				</a>
 			</div>
 
-			
+
 			<div class="block lg:hidden">
 				<button id="nav-toggle" class="text-white focus:outline-none">
 					<i class="fa-solid fa-bars text-2xl"></i>
 				</button>
 			</div>
 
-		
+
 			<div class="relative text-gray-600 w-full lg:w-auto flex justify-center mt-4 lg:mt-0">
 				<div class="absolute flex flex-col z-10 left-0">
 					<button id="dropdownButton" class="border-x text-sm border-gray-300 text-gray-600 h-10 px-4 bg-white hover:border-gray-400 focus:outline-none flex items-center justify-between rounded-tl-xl rounded-bl-xl w-40 overflow-hidden truncate whitespace-nowrap">
@@ -56,15 +56,13 @@ require 'tarefa_controller.php';
 					<div id="dropdownMenu" class="mt-1 w-full bg-white border border-gray-300 rounded-md shadow-md hidden"></div>
 				</div>
 
-		<input type="text" id="search" name="search" placeholder="Search" class="bg-white h-10 px-[11rem] rounded-xl text-sm focus:outline-none w-full lg:w-auto">
-<button type="button" id="searchBtn" class="absolute right-0 bottom-2 mt-3 mr-4 cursor-pointer">
-  <i class="fa-solid fa-magnifying-glass"></i>
-</button>
-
-
+				<input type="text" name="search" placeholder="Search" class="bg-white h-10 px-[11rem]  rounded-xl text-sm focus:outline-none w-full lg:w-auto">
+				<button type="submit" class="absolute right-0 bottom-2 mt-3 mr-4 cursor-pointer">
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</button>
 			</div>
 
-			
+
 			<div id="nav-content" class="w-full lg:w-auto hidden lg:flex justify-center mt-4 lg:mt-0">
 				<div class="relative inline-block" id="user-dropdown">
 					<?php if (isset($_SESSION['usuario'])): ?>
@@ -73,12 +71,12 @@ require 'tarefa_controller.php';
 						</div>
 
 						<div id="dropdown" class="absolute left-0 mt-2 w-32 bg-white rounded-b-xl shadow-lg hidden">
-							
+
 							<div class="relative group">
-								
+
 								<div class="absolute -top-2 left-4 w-4 h-4 bg-white rotate-45 z-0 group-hover:bg-gray-200 "></div>
 
-								
+
 								<a href="logout.php" class="block px-4 py-2 text-red-500 hover:text-red-800 hover:bg-gray-200 rounded-b-xl relative z-10">
 									Sair
 								</a>
@@ -96,13 +94,6 @@ require 'tarefa_controller.php';
 		</div>
 	</nav>
 
-
-
-
-
-
-
-	<!-- Toastify mensagens -->
 	<?php if (isset($_GET['erro']) && $_GET['erro'] == 1): ?>
 		<script>
 			document.addEventListener("DOMContentLoaded", function() {
