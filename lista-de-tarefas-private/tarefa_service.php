@@ -1,6 +1,6 @@
 <?php
 
-// CRUD, aqui se encontra as funções desejadas para a aplicação
+// CRUD
 class TarefaService
 {
 

@@ -25,7 +25,7 @@ if (!isset($_SESSION['usuario_id'])) {
 	<nav class="bg-principal p-4">
 		<div class="flex flex-wrap items-center justify-between lg:justify-around">
 
-			<!-- Logo -->
+
 			<div class="flex items-center">
 				<a href="nova_tarefa.php" class="flex items-center text-lg font-semibold">
 					<img src="img/logo_task_flow.png" width="30" height="30" alt="Logo">
@@ -33,14 +33,13 @@ if (!isset($_SESSION['usuario_id'])) {
 				</a>
 			</div>
 
-			<!-- Botão hamburguer -->
+
 			<div class="block lg:hidden">
 				<button id="nav-toggle" class="text-white focus:outline-none">
 					<i class="fa-solid fa-bars text-2xl"></i>
 				</button>
 			</div>
 
-			<!-- Filtro + busca (sempre centralizado) -->
 			<div class="relative text-gray-600 w-full lg:w-auto flex justify-center mt-4 lg:mt-0">
 				<div class="absolute flex flex-col z-10 left-0">
 					<button id="dropdownButton" class="border-x text-sm border-gray-300 text-gray-600 h-10 px-4 bg-white hover:border-gray-400 focus:outline-none flex items-center justify-between rounded-tl-xl rounded-bl-xl w-40 overflow-hidden truncate whitespace-nowrap">
@@ -56,7 +55,6 @@ if (!isset($_SESSION['usuario_id'])) {
 				</button>
 			</div>
 
-			<!-- Área do usuário (mostrada apenas se nav aberto no mobile ou direto no desktop) -->
 			<div id="nav-content" class="w-full lg:w-auto hidden lg:flex justify-center mt-4 lg:mt-0">
 				<div class="relative inline-block" id="user-dropdown">
 					<?php if (isset($_SESSION['usuario'])): ?>
@@ -65,12 +63,11 @@ if (!isset($_SESSION['usuario_id'])) {
 						</div>
 
 						<div id="dropdown" class="absolute left-0 mt-2 w-32 bg-white rounded-b-xl shadow-lg hidden">
-							<!-- Adicionamos "group" aqui -->
+				
 							<div class="relative group">
-								<!-- Setinha: reage ao hover do grupo -->
+								
 								<div class="absolute -top-2 left-4 w-4 h-4 bg-white rotate-45 z-0 group-hover:bg-gray-200 "></div>
 
-								<!-- Link: pertence ao grupo -->
 								<a href="logout.php" class="block px-4 py-2 text-red-500 hover:text-red-800 hover:bg-gray-200 rounded-b-xl relative z-10">
 									Sair
 								</a>

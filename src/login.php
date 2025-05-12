@@ -18,7 +18,6 @@
 
     <div class="flex flex-row max-sm:flex-col-reverse w-full max-w-4xl bg-white rounded-xl shadow-lg overflow-hidden">
 
-        <!-- Lado Esquerdo: Login -->
         <div class="w-1/2 max-sm:w-full p-8 flex flex-col justify-center">
             <h1 class="text-2xl font-bold text-center mb-6 font-pessoal cor-tit-auth">
                 Entrar no TaskFlow
@@ -41,11 +40,6 @@
                     required
                     class="w-5/6 p-2 bg-input border rounded-lg placeholder:text-place placeholder:font-extrabold placeholder:text-xs" />
 
-                <!-- <button
-          type="submit"
-          class="w-2/3 bg-auth text-white font-bold py-2 rounded-2xl mt-4 hover:bg-principal">
-          ENTRAR
-        </button> -->
 
                 <button
                     type="submit"
@@ -61,7 +55,6 @@
             </div>
         </div>
 
-        <!-- Lado Direito: TaskFlow Logo -->
         <div class="w-1/2 max-sm:w-full bg-principal text-white flex flex-col justify-center items-center p-8">
             <h2 class="text-4xl sm:text-5xl font-bold mb-6 flex items-center gap-4">
                 <img src="../src/img/logo_task_flow.png" class="w-14" alt="Logo TaskFlow" />

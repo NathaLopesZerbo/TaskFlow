@@ -147,12 +147,12 @@ require 'tarefa_controller.php';
 							<strong><?= ($tarefa->titulo_tarefa ?? 'Sem título') ?></strong><br>
 							<?= ($tarefa->tarefa) ?>
 							<div class="text-sm text-gray-500 mt-1">
-								Data cadastrada: <?= date('d/m/Y H:i', strtotime($tarefa->data_cadastrado)) ?>
+								Data cadastrada: <?= date('d/m/Y H:i', ($tarefa->data_cadastrado)) ?>
 							</div>
 						</div>
 						<div class="w-3/12 flex items-center justify-end gap-4 mt-1">
 							<i class="fas fa-trash-alt text-red-500 hover:text-red-600 cursor-pointer" onclick="remove(<?= $tarefa->id ?>)"></i>
-							<i class="fas fa-edit text-blue-500 hover:text-blue-600 cursor-pointer" onclick="edit(<?= $tarefa->id ?>, '<?= addslashes($tarefa->titulo_tarefa) ?>', '<?= addslashes($tarefa->tarefa) ?>')"></i>
+							<i class="fas fa-edit text-blue-500 hover:text-blue-600 cursor-pointer" onclick="edit(<?= $tarefa->id ?>, '<?= ($tarefa->titulo_tarefa) ?>', '<?= ($tarefa->tarefa) ?>')"></i>
 							<i class="fas fa-check-square text-green-500 hover:text-green-600 cursor-pointer" onclick="marked(<?= $tarefa->id ?>)"></i>
 						</div>
 					</div>

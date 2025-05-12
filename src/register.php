@@ -14,10 +14,10 @@
     <div class="w-screen h-screen fixed top-0 left-0 flex items-center justify-center bg-opacity-60">
         <div class="flex flex-row max-sm:flex-col-reverse max-w-4xl w-full h-auto bg-white rounded-xl shadow-lg overflow-hidden m-5">
 
-            <!-- Bloco TaskFlow -->
+     
             
 
-            <!-- Bloco de Cadastro -->
+            
             <div class="w-1/2 max-sm:w-full p-6">
                 <h1 class="text-2xl font-bold text-center mb-3 font-pessoal cor-tit-auth">CRIAR CONTA</h1>
 
