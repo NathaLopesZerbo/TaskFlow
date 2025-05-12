@@ -52,7 +52,7 @@ Certifique-se de ter os seguintes itens instalados:
 
    - Se estiver no GitHub:
      ```bash
-     git clone https://github.com/seu-usuario/projeto-taskflow.git
+     git clone https://github.com/seu-usuario/taskflow.git
      ```
    - Ou faça o download em `.zip` e extraia.
 
