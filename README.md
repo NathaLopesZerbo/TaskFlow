@@ -33,32 +33,34 @@ O **TaskFlow** é uma aplicação voltada para o gerenciamento de tarefas. Permi
 
 ---
 
-## 🚀 Executar Localmente
+## 🚀 Executando Localmente
 
-Siga os passos abaixo para rodar o projeto **TaskFlow** no seu ambiente local.
+Para executar o projeto localmente em seu ambiente de desenvolvimento, siga os passos abaixo:
 
-### ⚙️ Pré-requisitos
-
-Certifique-se de ter os seguintes itens instalados:
-
-- [XAMPP](https://www.apachefriends.org/pt_br/index.html) ou outro servidor com **Apache**, **PHP** e **MySQL**.
-- Navegador de internet (Google Chrome, Firefox etc).
-
----
-
-### 📁 Instalação do Projeto
-
-1. **Clone ou baixe** o repositório deste projeto:
-
-   - Se estiver no GitHub:
-     ```bash
+1. **Clone o repositório via Git** ou **faça o download manualmente**:
+   
+   - **Git**:
+     ```
      git clone https://github.com/NathaLopesZerbo/TaskFlow.git
      ```
-   - Ou faça o download em `.zip` e extraia.
 
-2. **Mova a pasta do projeto** para o diretório de projetos do XAMPP:
+   - **Download Manual**:
+     - Clique em "Code" no repositório GitHub e selecione "Download ZIP".
+     - Ao fazer o download em formato `.zip`, o nome da pasta será `TaskFlow-main`.
+     - **Renomeie a pasta** para `taskflow`.
 
-   ```bash
-   C:\xampp\htdocs\taskflow
+2. **Mova a pasta do projeto para o diretório de projetos do XAMPP**:
+   - Se você usou o Git, a pasta já estará com o nome `taskflow`, mas se você fez o download em `.zip`, será necessário renomeá-la para `taskflow`.
+   - Mova a pasta `taskflow` para o diretório `htdocs` do XAMPP:
+     - **C:\xampp\htdocs\taskflow**
+
+3. **Acesse o projeto localmente**:
+   - Após mover a pasta, abra o navegador e acesse o endereço:
+     ```
+     http://localhost/taskflow/src
+     ```
+
+Esse processo irá garantir que o projeto esteja configurado corretamente no seu servidor local (XAMPP) e você possa visualizá-lo no seu navegador.
+
 
 
